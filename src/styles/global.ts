@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { Colors } from './colors';
 
 export default createGlobalStyle`
 
@@ -20,8 +21,8 @@ html {
 }
 
 body {
-  background: #dedede;
-  background: linear-gradient(145deg, #dedede 3.25%, #ccc 99.18%);
+  background: ${Colors.primary};
+  background: linear-gradient(145deg, ${Colors.primaryDark} 25%, ${Colors.primaryLight} 99%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,7 +30,7 @@ body {
 body, input, button {
   font: 1.4rem 'Roboto', sans-serif;
   line-height: 1.6;
-  color: #444;
+  color: ${Colors.primaryText};
 }
 
 h1, h2, h3, h4, h5, h6 {
