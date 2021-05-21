@@ -5,6 +5,7 @@ import { Container } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   time?: number;
+  title?: string;
   valueChange: (value: string) => void;
   icon?: React.ComponentType<IconBaseProps>;
   iconColor?: string;
@@ -17,6 +18,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: React.FC<InputProps> = ({
   time = 300,
+  title,
   valueChange,
   icon: Icon,
   iconColor = '#000',
@@ -58,6 +60,7 @@ export const Input: React.FC<InputProps> = ({
         {...rest}
       />
       {Icon && <Icon size={20} color={iconColor} />}
+      {title && <span>{title}</span>}
     </Container>
   );
 };
