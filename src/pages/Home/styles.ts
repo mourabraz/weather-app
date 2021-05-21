@@ -45,6 +45,10 @@ export const TemperatureInfo = styled.div`
   p {
     font-size: 1.2rem;
     font-style: italic;
+
+    span {
+      margin-left: 16px;
+    }
   }
 `;
 

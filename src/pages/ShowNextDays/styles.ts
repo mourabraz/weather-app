@@ -12,3 +12,7 @@ export const Content = styled.div`
   align-self: center;
   align-items: center;
 `;
+
+export const List = styled.div`
+  display: flex;
+`;

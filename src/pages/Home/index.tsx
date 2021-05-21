@@ -19,7 +19,12 @@ export const Home: React.FC<HomeProps> = ({ current }) => {
           {current.tempFormatted}º <span>C</span>
         </h2>
         <h3>{current.weather[0].description}</h3>
-        <p>Última atualzação: {current.dateFormatted}</p>
+        <p>
+          Última atualzação:
+          <span>
+            {current.getFormattedDate("dd 'de' MMMM 'de' yyyy 'às' hh:mm")}
+          </span>
+        </p>
       </TemperatureInfo>
       <InfoBox>
         <div>

@@ -1,15 +1,25 @@
 import React from 'react';
 
+import { Forecast } from '../../../../models/Forecast';
+
 import { Container } from './styles';
 
-export const Item: React.FC = () => {
+interface ItemProps {
+  day: Forecast;
+}
+
+export const Item: React.FC<ItemProps> = ({ day }) => {
   return (
     <Container>
-      <p>sex 21</p>
+      <p>{day.getFormattedDate('EEE dd')}</p>
       <p>
-        20º <span>12º</span>
+        <img src={day.iconWeatherUrl} alt={day.weather[0].main} />
       </p>
-      <p>Parcialmente Nublado</p>
+      <p>
+        <span>{day.tempMaxMinFormatted?.max}º</span>
+        <span>{day.tempMaxMinFormatted?.min}º</span>
+      </p>
+      <p>{day.weather[0].description}</p>
     </Container>
   );
 };
