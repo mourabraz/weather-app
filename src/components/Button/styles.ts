@@ -28,7 +28,7 @@ export const Container = styled.button`
 
   span {
     width: max-content;
-    background: white; //${Colors.primaryLight};
+    background: ${Colors.textIcons};
     padding: 16px;
     border: 1px solid ${Colors.accent};
     border-radius: 4px;
@@ -40,7 +40,7 @@ export const Container = styled.button`
     top: calc(100% + 8px);
     left: 50%;
     transform: translateX(-50%);
-    color: ${Colors.primaryText};
+    color: ${Colors.accent};
 
     &::before {
       content: '';
