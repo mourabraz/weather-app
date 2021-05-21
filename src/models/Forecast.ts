@@ -43,12 +43,8 @@ export interface ForecastResponse {
 }
 
 export class Forecast {
-  static IntlNumberFormatInteger = new Intl.NumberFormat('pt', {
-    minimumFractionDigits: 0,
-  });
-
   static IntlNumberFormatFloat = new Intl.NumberFormat('pt', {
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 1,
   });
 
   static fromResponse(
@@ -164,24 +160,38 @@ export class Forecast {
   }
 
   public get visibilityFormatted(): string | undefined {
-    return this.visibility
-      ? Forecast.IntlNumberFormatInteger.format(this.visibility / 1000)
-      : undefined;
+    return this.visibility ? (this.visibility / 1000).toFixed(0) : undefined;
   }
 
   public get windSpeedFormatted(): string {
-    return Forecast.IntlNumberFormatFloat.format(
-      (this.windSpeed * 3600) / 1000,
-    );
+    return Math.round((this.windSpeed * 36) / 10).toFixed(0);
   }
 
   public get tempFormatted(): string | undefined {
-    return this.temp
-      ? Forecast.IntlNumberFormatFloat.format(this.temp)
+    return this.temp ? this.temp.toFixed(0) : undefined;
+  }
+
+  public get feelLikeFormatted(): string | undefined {
+    return this.feelLike
+      ? Forecast.IntlNumberFormatFloat.format(this.feelLike)
       : undefined;
   }
 
   public get iconWeatherUrl(): string {
     return `${process.env.REACT_APP_ICONS_URL}${this.weather[0].icon}@2x.png`;
+  }
+
+  public get tempMaxMinFormatted():
+    | {
+        max: string;
+        min: string;
+      }
+    | undefined {
+    return this.tempDaily
+      ? {
+          max: this.tempDaily.max.toFixed(0),
+          min: this.tempDaily.min.toFixed(0),
+        }
+      : undefined;
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react';
+import { FiNavigation } from 'react-icons/fi';
 import { Forecast } from '../../models/Forecast';
+import { Colors } from '../../styles/colors';
 
-import { Container, TemperatureInfo, InfoBox } from './styles';
+import { Container, TemperatureInfo, InfoBox, WindIcon } from './styles';
 
 interface HomeProps {
   current: Forecast;
@@ -14,7 +16,7 @@ export const Home: React.FC<HomeProps> = ({ current }) => {
       <TemperatureInfo>
         <h2>
           <img src={current.iconWeatherUrl} alt={current.weather[0].main} />
-          18º <span>C</span>
+          {current.tempFormatted}º <span>C</span>
         </h2>
         <h3>{current.weather[0].description}</h3>
         <p>Última atualzação: {current.dateFormatted}</p>
@@ -22,10 +24,13 @@ export const Home: React.FC<HomeProps> = ({ current }) => {
       <InfoBox>
         <div>
           <p>
-            Sensação Térmica <span>{current.tempFormatted} º</span>
+            Sensação Térmica <span>{current.feelLikeFormatted} º</span>
           </p>
           <p>
-            Vento <span>sudoeste</span>{' '}
+            Vento
+            <WindIcon direction={Math.abs(current.windDeg)}>
+              <FiNavigation color={Colors.textIcons} size={16} />
+            </WindIcon>
             <span>{current.windSpeedFormatted} km/h</span>
           </p>
           <p>
