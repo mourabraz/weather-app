@@ -5,7 +5,7 @@ export enum Colors {
   primaryDark = '#1976D2',
 
   textIcons = '#FFFFFF',
-  primaryText = '#212121',
+  primaryText = '#FAFAFA',
   secondaryText = '#757575',
 
   accent = '#03A9F4',
