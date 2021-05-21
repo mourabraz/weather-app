@@ -1,5 +1,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-useless-constructor */
+import { utcToZonedTime, format } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt';
+
 import { Weather, WeatherResponse } from './Weather';
 
 export interface FeelsLike {
@@ -193,5 +196,12 @@ export class Forecast {
           min: this.tempDaily.min.toFixed(0),
         }
       : undefined;
+  }
+
+  public getFormattedDate(_format = "dd 'de' MMMM 'de' yyyy"): string {
+    return format(utcToZonedTime(this.date, 'Europe/Lisbon'), _format, {
+      timeZone: 'Europe/Lisbon',
+      locale: pt,
+    });
   }
 }
