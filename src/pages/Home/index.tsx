@@ -1,39 +1,46 @@
 import React from 'react';
+import { Forecast } from '../../models/Forecast';
 
 import { Container, TemperatureInfo, InfoBox } from './styles';
 
-export const Home: React.FC = () => {
+interface HomeProps {
+  current: Forecast;
+}
+
+export const Home: React.FC<HomeProps> = ({ current }) => {
   return (
     <Container>
       <h1>Cortes, Leiria</h1>
       <TemperatureInfo>
         <h2>
-          <span>icon</span> 18º <span>C</span>
+          <img src={current.iconWeatherUrl} alt={current.weather[0].main} />
+          18º <span>C</span>
         </h2>
-        <h3>Geralmente nublado</h3>
-        <p>Última atualzação às 09:53</p>
+        <h3>{current.weather[0].description}</h3>
+        <p>Última atualzação: {current.dateFormatted}</p>
       </TemperatureInfo>
       <InfoBox>
         <div>
           <p>
-            Sensação Térmica <span>17º</span>
+            Sensação Térmica <span>{current.tempFormatted} º</span>
           </p>
           <p>
-            Vento <span>sudoeste</span> <span>9 km/h</span>
+            Vento <span>sudoeste</span>{' '}
+            <span>{current.windSpeedFormatted} km/h</span>
           </p>
           <p>
-            Visibilidade <span>10 km</span>
+            Visibilidade <span>{current.visibilityFormatted} km</span>
           </p>
         </div>
         <div>
           <p>
-            Barómetro <span>1019,00 mb</span>
+            Barómetro <span>{current.pressure} mb</span>
           </p>
           <p>
-            Humidade <span>83%</span>
+            Humidade <span>{current.humidity} %</span>
           </p>
           <p>
-            Ponto de Condensação <span>14º</span>
+            Ponto de Condensação <span>{current.dewPoint} º</span>
           </p>
         </div>
       </InfoBox>
