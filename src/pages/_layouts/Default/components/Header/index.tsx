@@ -18,10 +18,11 @@ export const Header: React.FC = () => {
       </Button>
       <Input
         icon={FiSearch}
-        valueChange={console.log}
+        valueChange={e => console.log(e)}
         iconColor={Colors.textIcons}
         borderColor={Colors.accent}
         color={Colors.textIcons}
+        title="start typing the city name"
       />
     </Container>
   );
