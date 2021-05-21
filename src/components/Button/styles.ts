@@ -19,11 +19,13 @@ export const Container = styled.button`
     opacity: 0.5;
     cursor: not-allowed;
     &:hover {
-      filter: none;
+      opacity: 1;
     }
   }
   &:hover {
-    filter: brightness(0.9);
+    svg {
+      opacity: 0.5;
+    }
   }
 
   span {

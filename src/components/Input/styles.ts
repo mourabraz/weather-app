@@ -20,7 +20,7 @@ export const Container = styled.div<ContainerProps>`
   color: ${props => props.color};
 
   input {
-    width: 120px;
+    width: 110px;
     background: transparent;
     border: 0;
     color: ${props => props.color};
