@@ -12,4 +12,8 @@ export const Content = styled.main`
   padding: 16px;
   display: flex;
   flex-direction: column;
+
+  section + section {
+    margin-top: 32px;
+  }
 `;
