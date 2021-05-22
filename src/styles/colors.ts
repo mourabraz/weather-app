@@ -18,4 +18,7 @@ export enum Colors {
   error = '#F44336',
   errorLight = '#FFCDD2',
   errorDark = '#D32F2F',
+
+  selectedBackground = '#F5F5F522',
+  selectedBackgroundDark = '#F5F5F580',
 }

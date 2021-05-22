@@ -1,11 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Colors } from '../../../../styles/colors';
 
-export const Container = styled.div`
+interface ContainerProps {
+  isSelected: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 110px;
-  height: 150px;
+  height: 169px;
+  border-radius: 8px;
+  padding: 8px;
+  border: 2px solid transparent;
 
   & + div {
     margin-left: 20px;
@@ -42,9 +51,38 @@ export const Container = styled.div`
 
     /* description */
     &:nth-child(4) {
-      margin-top: 16px;
-      height: 50px;
+      align-items: center;
       text-align: center;
+      margin-top: 8px;
+      padding: 0 8px;
+      height: 50px;
     }
   }
+
+  ${props =>
+    props.isSelected
+      ? css`
+          background-color: ${Colors.selectedBackground};
+          border: 2px solid ${Colors.selectedBackground};
+
+          &::after {
+            content: '';
+            border-style: solid;
+            border-color: ${Colors.selectedBackground} transparent;
+            border-width: 16px 16px 0 16px;
+            bottom: -18px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+
+          &:hover {
+            border: 2px solid ${Colors.selectedBackgroundDark};
+
+            &::after {
+              border-color: ${Colors.selectedBackgroundDark} transparent;
+            }
+          }
+        `
+      : null}
 `;

@@ -6,11 +6,17 @@ import { Container } from './styles';
 
 interface ItemProps {
   day: Forecast;
+  onSelect: (item: Forecast) => void;
+  isSelected: boolean;
 }
 
-export const Item: React.FC<ItemProps> = ({ day }) => {
+export const Item: React.FC<ItemProps> = ({
+  day,
+  onSelect,
+  isSelected = false,
+}) => {
   return (
-    <Container>
+    <Container isSelected={isSelected} onClick={() => onSelect(day)}>
       <p>{day.getFormattedDate('EEE dd')}</p>
       <p>
         <img src={day.iconWeatherUrl} alt={day.weather[0].main} />
