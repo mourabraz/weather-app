@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setPosition } from './store/modules/position/actions';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
 import { Current as CurrentModel } from './models/Current';
@@ -11,6 +13,7 @@ import { Current } from './pages/Current';
 import { ShowNextDays } from './pages/ShowNextDays';
 import { ForecastDetails } from './pages/ForecastDetails';
 import { DailyForecast } from './models/DailyForecast';
+import { State } from './store';
 
 const getPosition = async () => {
   return new Promise<Position>((resolve, reject) => {
@@ -28,10 +31,12 @@ const getPosition = async () => {
 };
 
 export const App: React.FC = () => {
-  // const position = useSelector(s => state);
+  const dispatch = useDispatch();
+  const position = useSelector<State, Position>(state => state.position);
+
+  console.log(position);
 
   const [loadingPosition, setLoadingPosition] = useState<boolean>(false);
-  const [position, setPosition] = useState<Position>();
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
   const [current, setCurrent] = useState<CurrentModel>();
   const [selectedDay, setSelectedDay] = useState<DailyForecast>();
@@ -42,10 +47,10 @@ export const App: React.FC = () => {
         setLoadingPosition(true);
         const result = await getPosition();
 
-        setPosition(result);
+        dispatch(setPosition(result));
       } catch (error) {
         console.error(error);
-        setPosition({
+        dispatch({
           lat: 40.00001, // 39.74362,
           long: 6.55555, // -8.80705,
         });
@@ -55,11 +60,9 @@ export const App: React.FC = () => {
     }
 
     load();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log(position);
-
     async function load() {
       try {
         /* const responseJson = await fetch(
