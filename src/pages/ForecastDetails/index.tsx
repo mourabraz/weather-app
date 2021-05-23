@@ -3,7 +3,8 @@ import { FiNavigation } from 'react-icons/fi';
 
 import { Forecast } from '../../models/Forecast';
 
-import { Container, Row, Column } from './styles';
+import { Colors } from '../../styles/colors';
+import { Container, Row, Column, WindIcon } from './styles';
 
 interface ForecastDetailsProps {
   day: Forecast;
@@ -15,10 +16,66 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
       <h1>Detalhes do Dia</h1>
 
       <Row>
-        <Column>coluna 1</Column>
-        <Column>coluna 2</Column>
-        <Column>coluna 3</Column>
-        <Column>coluna 4</Column>
+        <Column>
+          <p>
+            Máx: <span>{day.tempDailyFormatted?.max} ºC</span>
+          </p>
+          <p>
+            Min: <span>{day.tempDailyFormatted?.min} ºC</span>
+          </p>
+
+          <p>
+            Dia <span>{day.tempDailyFormatted?.day} ºC</span>
+          </p>
+
+          <p>
+            Noite <span>{day.tempDailyFormatted?.eve} ºC</span>
+          </p>
+        </Column>
+        <Column>
+          <p>
+            Nascer do Sol <span>{day.getSunriseHour()}</span>
+          </p>
+          <p>
+            Por do Sol <span>{day.getSunsetHour()}</span>
+          </p>
+          <p>
+            Nascer da Lua <span>{day.getMoonriseHour()}</span>
+          </p>
+          <p>
+            Por da Lua <span>{day.getMoonsetHour()}</span>
+          </p>
+          <p>
+            Fase lunar <span>{day.moonPhase}</span>
+          </p>
+        </Column>
+        <Column>
+          <p>
+            Precipitação <span>{day.popFormatted} %</span>
+          </p>
+          <p>
+            Ponto de orvalho <span>{day.dewPointFormatted} ºC</span>
+          </p>
+
+          <p>
+            Humidade <span>{day.humidity} %</span>
+          </p>
+        </Column>
+        <Column>
+          <p>
+            Vento
+            <span>{day.windSpeedFormatted} km/h</span>
+          </p>
+          <p>
+            <WindIcon direction={Math.abs(day.windDeg)}>
+              <FiNavigation color={Colors.textIcons} size={32} />
+            </WindIcon>
+          </p>
+
+          <p>
+            UV <span>{day.uvi}</span>
+          </p>
+        </Column>
       </Row>
     </Container>
   );

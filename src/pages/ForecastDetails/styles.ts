@@ -25,6 +25,17 @@ export const Column = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 8px 16px;
+
+  p {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    span {
+    }
+  }
 `;
 
 export const WindIcon = styled.span<WindIconProps>`

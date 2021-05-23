@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
+import { Forecast } from './models/Forecast';
 import { Position } from './interfaces';
 
 import GlobalStyle from './styles/global';
 import { Default } from './pages/_layouts/Default';
 import { Home } from './pages/Home';
 import { ShowNextDays } from './pages/ShowNextDays';
+import { ForecastDetails } from './pages/ForecastDetails';
 
 const getPosition = async () => {
   return new Promise<Position>((resolve, reject) => {
@@ -27,6 +29,7 @@ export const App: React.FC = () => {
   const [loadingPosition, setLoadingPosition] = useState<boolean>(false);
   const [position, setPosition] = useState<Position>();
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
+  const [selectedDay, setSelectedDay] = useState<Forecast>();
 
   useEffect(() => {
     async function load() {
@@ -423,7 +426,12 @@ export const App: React.FC = () => {
         {forecastOneCall ? (
           <>
             <Home current={forecastOneCall.current} />
-            <ShowNextDays nextDays={forecastOneCall.daily} />
+            <ShowNextDays
+              nextDays={forecastOneCall.daily}
+              selectedDay={selectedDay}
+              onSelect={setSelectedDay}
+            />
+            {selectedDay ? <ForecastDetails day={selectedDay} /> : null}
           </>
         ) : (
           <span>loading from position</span>

@@ -116,8 +116,8 @@ export class Forecast {
       temperature.value,
       temperature.obj,
       moon_phase,
-      moonrise,
-      moonset,
+      moonrise ? new Date(moonrise * 1000) : undefined,
+      moonset ? new Date(moonset * 1000) : undefined,
       pop,
       rainValue,
       snowValue,
@@ -144,8 +144,8 @@ export class Forecast {
     public temp?: number,
     public tempDaily?: Temperature,
     public moonPhase?: number,
-    public moonrise?: number,
-    public moonset?: number,
+    public moonrise?: Date,
+    public moonset?: Date,
     public pop?: number,
     public rain?: number,
     public snow?: number,
@@ -166,12 +166,22 @@ export class Forecast {
     return this.visibility ? (this.visibility / 1000).toFixed(0) : undefined;
   }
 
+  public get popFormatted(): string {
+    return this.pop !== undefined ? (this.pop * 100).toFixed(0) : '?';
+  }
+
   public get windSpeedFormatted(): string {
     return Math.round((this.windSpeed * 36) / 10).toFixed(0);
   }
 
   public get tempFormatted(): string | undefined {
-    return this.temp ? this.temp.toFixed(0) : undefined;
+    return this.temp
+      ? Forecast.IntlNumberFormatFloat.format(this.temp)
+      : undefined;
+  }
+
+  public get dewPointFormatted(): string {
+    return Forecast.IntlNumberFormatFloat.format(this.dewPoint);
   }
 
   public get feelLikeFormatted(): string | undefined {
@@ -184,16 +194,24 @@ export class Forecast {
     return `${process.env.REACT_APP_ICONS_URL}${this.weather[0].icon}@2x.png`;
   }
 
-  public get tempMaxMinFormatted():
+  public get tempDailyFormatted():
     | {
         max: string;
         min: string;
+        day: string;
+        eve: string;
+        morn: string;
+        night: string;
       }
     | undefined {
     return this.tempDaily
       ? {
-          max: this.tempDaily.max.toFixed(0),
-          min: this.tempDaily.min.toFixed(0),
+          max: Forecast.IntlNumberFormatFloat.format(this.tempDaily.max),
+          min: Forecast.IntlNumberFormatFloat.format(this.tempDaily.min),
+          day: Forecast.IntlNumberFormatFloat.format(this.tempDaily.day),
+          eve: Forecast.IntlNumberFormatFloat.format(this.tempDaily.eve),
+          morn: Forecast.IntlNumberFormatFloat.format(this.tempDaily.morn),
+          night: Forecast.IntlNumberFormatFloat.format(this.tempDaily.night),
         }
       : undefined;
   }
@@ -203,5 +221,41 @@ export class Forecast {
       timeZone: 'Europe/Lisbon',
       locale: pt,
     });
+  }
+
+  public getMoonriseHour(_format = 'HH:mm'): string | undefined {
+    return this.moonrise
+      ? format(utcToZonedTime(this.moonrise, 'Europe/Lisbon'), _format, {
+          timeZone: 'Europe/Lisbon',
+          locale: pt,
+        })
+      : undefined;
+  }
+
+  public getMoonsetHour(_format = 'HH:mm'): string | undefined {
+    return this.moonset
+      ? format(utcToZonedTime(this.moonset, 'Europe/Lisbon'), _format, {
+          timeZone: 'Europe/Lisbon',
+          locale: pt,
+        })
+      : undefined;
+  }
+
+  public getSunriseHour(_format = 'HH:mm'): string | undefined {
+    return this.sunrise
+      ? format(utcToZonedTime(this.sunrise, 'Europe/Lisbon'), _format, {
+          timeZone: 'Europe/Lisbon',
+          locale: pt,
+        })
+      : undefined;
+  }
+
+  public getSunsetHour(_format = 'HH:mm'): string | undefined {
+    return this.sunset
+      ? format(utcToZonedTime(this.sunset, 'Europe/Lisbon'), _format, {
+          timeZone: 'Europe/Lisbon',
+          locale: pt,
+        })
+      : undefined;
   }
 }

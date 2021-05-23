@@ -5,12 +5,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   color: ${Colors.primaryText};
-`;
-
-export const Content = styled.div`
-  display: flex;
-  align-self: center;
-  align-items: center;
+  min-width: 1020px;
+  margin: 0 auto;
 `;
 
 export const List = styled.div`
