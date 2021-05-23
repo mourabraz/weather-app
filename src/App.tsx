@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
 import { Current as CurrentModel } from './models/Current';
@@ -27,6 +28,8 @@ const getPosition = async () => {
 };
 
 export const App: React.FC = () => {
+  // const position = useSelector(s => state);
+
   const [loadingPosition, setLoadingPosition] = useState<boolean>(false);
   const [position, setPosition] = useState<Position>();
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
@@ -497,6 +500,7 @@ export const App: React.FC = () => {
           </>
         ) : null}
       </Default>
+
       <GlobalStyle />
     </>
   );
