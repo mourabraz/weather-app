@@ -56,24 +56,22 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           <p>
             Ponto de orvalho <span>{day.dewPointFormatted} ºC</span>
           </p>
-
           <p>
             Humidade <span>{day.humidity} %</span>
           </p>
-        </Column>
-        <Column>
-          <p>
-            Vento
-            <span>{day.windSpeedFormatted} km/h</span>
-          </p>
-          <p>
-            <WindIcon direction={Math.abs(day.wind.deg)}>
-              <FiNavigation color={Colors.textIcons} size={32} />
-            </WindIcon>
-          </p>
-
           <p>
             UV <span>{day.uvi}</span>
+          </p>
+        </Column>
+        <Column>
+          <p>Vento</p>
+          <p>
+            <WindIcon direction={Math.abs(day.wind.deg)}>
+              <FiNavigation color={Colors.textIcons} size={40} />
+            </WindIcon>
+          </p>
+          <p>
+            <span>{day.windSpeedFormatted} km/h</span>
           </p>
         </Column>
       </Row>
