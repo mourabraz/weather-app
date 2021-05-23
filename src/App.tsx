@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setPosition } from './store/modules/position/actions';
+import { setPositionRequest } from './store/modules/position/actions';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
 import { Current as CurrentModel } from './models/Current';
@@ -15,51 +15,16 @@ import { ForecastDetails } from './pages/ForecastDetails';
 import { DailyForecast } from './models/DailyForecast';
 import { State } from './store';
 
-const getPosition = async () => {
-  return new Promise<Position>((resolve, reject) => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(p => {
-        resolve({
-          lat: p.coords.latitude,
-          long: p.coords.longitude,
-        });
-      }, reject);
-    } else {
-      reject();
-    }
-  });
-};
-
 export const App: React.FC = () => {
   const dispatch = useDispatch();
   const position = useSelector<State, Position>(state => state.position);
 
-  console.log(position);
-
-  const [loadingPosition, setLoadingPosition] = useState<boolean>(false);
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
   const [current, setCurrent] = useState<CurrentModel>();
   const [selectedDay, setSelectedDay] = useState<DailyForecast>();
 
   useEffect(() => {
-    async function load() {
-      try {
-        setLoadingPosition(true);
-        const result = await getPosition();
-
-        dispatch(setPosition(result));
-      } catch (error) {
-        console.error(error);
-        dispatch({
-          lat: 40.00001, // 39.74362,
-          long: 6.55555, // -8.80705,
-        });
-      } finally {
-        setLoadingPosition(false);
-      }
-    }
-
-    load();
+    dispatch(setPositionRequest());
   }, [dispatch]);
 
   useEffect(() => {
