@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
-import { Forecast } from './models/Forecast';
 import { Current as CurrentModel } from './models/Current';
 import { Position } from './interfaces';
 
