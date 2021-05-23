@@ -26,7 +26,7 @@ export const Current: React.FC<CurrentProps> = ({ current }) => {
         <p>
           Última atualzação:
           <span>
-            {current.getFormattedDate("dd 'de' MMMM 'de' yyyy 'às' hh:mm")}
+            {current.getFormattedDate("dd 'de' MMMM 'de' yyyy 'às' HH:mm")}
           </span>
         </p>
       </TemperatureInfo>

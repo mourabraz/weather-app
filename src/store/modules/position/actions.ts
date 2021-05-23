@@ -1,22 +1,26 @@
 import { Position } from '../../../interfaces';
-import { setError } from '../error/actions';
 import { ActionTypes } from './types';
 
-export function setPositionRequest() {
+export function getPositionRequest() {
   return {
-    type: ActionTypes.SET_POSITION_REQUEST,
+    type: ActionTypes.GET_POSITION_REQUEST,
   };
 }
 
-export function setPositionSuccess(position: Position) {
+export function getPositionSuccess(position: Position) {
   return {
-    type: ActionTypes.SET_POSITION_SUCCESS,
+    type: ActionTypes.GET_POSITION_SUCCESS,
     payload: {
       position,
     },
   };
 }
 
-export function setPositionFailure(error: Error | string | null) {
-  return setError(error);
+export function getPositionFailure(error: Error | string | null) {
+  return {
+    type: ActionTypes.GET_POSITION_FAILURE,
+    payload: {
+      error,
+    },
+  };
 }

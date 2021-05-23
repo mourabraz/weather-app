@@ -1,8 +1,8 @@
 import { ActionTypes } from './types';
 
-export function setError(error: Error | string | null) {
+export function addError(error: Error | string | null) {
   return {
-    type: ActionTypes.SET_ERROR,
+    type: ActionTypes.ADD_ERROR,
     payload: {
       error,
     },

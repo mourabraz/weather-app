@@ -7,7 +7,7 @@ const INITIAL_STATE = null;
 
 const position: Reducer<Position | null> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case ActionTypes.SET_POSITION_SUCCESS: {
+    case ActionTypes.GET_POSITION_SUCCESS: {
       return action.payload.position;
     }
     default: {
