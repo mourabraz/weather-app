@@ -1,15 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-useless-constructor */
-import { Forecast, ForecastResponse } from './Forecast';
-
-export interface ForecastOneCallResponse {
-  current: ForecastResponse;
-  daily: ForecastResponse[];
-  timezone: string;
-  timezone_offset: number;
-  lat: number;
-  lon: number;
-}
+import { ForecastOneCallResponse } from '../interfaces';
+import { Forecast } from './Forecast';
 
 export class ForecastOneCall {
   static fromResponse({

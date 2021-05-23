@@ -1,24 +1,28 @@
 import React from 'react';
 import { FiNavigation } from 'react-icons/fi';
-import { Forecast } from '../../models/Forecast';
+
+import { Current as CurrentModel } from '../../models/Current';
+
 import { Colors } from '../../styles/colors';
 
 import { Container, TemperatureInfo, InfoBox, WindIcon } from './styles';
 
-interface HomeProps {
-  current: Forecast;
+interface CurrentProps {
+  current: CurrentModel;
 }
 
-export const Home: React.FC<HomeProps> = ({ current }) => {
+export const Current: React.FC<CurrentProps> = ({ current }) => {
   return (
     <Container>
-      <h1>Cortes, Leiria</h1>
+      <h1>
+        {current.city.name} / <span>{current.city.countryCode}</span>
+      </h1>
       <TemperatureInfo>
         <h2>
-          <img src={current.iconWeatherUrl} alt={current.weather[0].main} />
-          {current.tempFormatted}º <span>C</span>
+          <img src={current.iconWeatherUrl} alt={current.weather.main} />
+          {current.tempFormatted.avg}º <span>C</span>
         </h2>
-        <h3>{current.weather[0].description}</h3>
+        <h3>{current.weather.description}</h3>
         <p>
           Última atualzação:
           <span>
@@ -26,14 +30,15 @@ export const Home: React.FC<HomeProps> = ({ current }) => {
           </span>
         </p>
       </TemperatureInfo>
+
       <InfoBox>
         <div>
           <p>
-            Sensação Térmica <span>{current.feelLikeFormatted} º</span>
+            Sensação Térmica <span>{current.feelsLikeFormatted.avg} º</span>
           </p>
           <p>
             Vento
-            <WindIcon direction={Math.abs(current.windDeg)}>
+            <WindIcon direction={Math.abs(current.wind.deg)}>
               <FiNavigation color={Colors.textIcons} size={16} />
             </WindIcon>
             <span>{current.windSpeedFormatted} km/h</span>
@@ -48,9 +53,6 @@ export const Home: React.FC<HomeProps> = ({ current }) => {
           </p>
           <p>
             Humidade <span>{current.humidity} %</span>
-          </p>
-          <p>
-            Ponto de Condensação <span>{current.dewPoint} º</span>
           </p>
         </div>
       </InfoBox>

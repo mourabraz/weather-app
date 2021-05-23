@@ -1,10 +1,5 @@
 /* eslint-disable no-useless-constructor */
-export interface WeatherResponse {
-  description: string;
-  icon: string;
-  id: number;
-  main: string;
-}
+import { WeatherResponse } from '../interfaces';
 
 export class Weather {
   static fromResponse({

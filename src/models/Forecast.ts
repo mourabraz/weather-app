@@ -3,47 +3,8 @@
 import { utcToZonedTime, format } from 'date-fns-tz';
 import pt from 'date-fns/locale/pt';
 
-import { Weather, WeatherResponse } from './Weather';
-
-export interface FeelsLike {
-  day: number;
-  eve: number;
-  morn: number;
-  night: number;
-}
-
-export interface Temperature {
-  day: number;
-  eve: number;
-  max: number;
-  min: number;
-  morn: number;
-  night: number;
-}
-
-export interface ForecastResponse {
-  clouds: number;
-  dew_point: number;
-  dt: number;
-  feels_like: number | FeelsLike;
-  humidity: number;
-  pressure: number;
-  sunrise: number;
-  sunset: number;
-  temp: number | Temperature;
-  uvi: number;
-  wind_deg: number;
-  wind_speed: number;
-  weather: WeatherResponse[];
-  visibility?: number;
-  wind_gust?: number;
-  moon_phase?: number;
-  moonrise?: number;
-  moonset?: number;
-  pop?: number;
-  rain?: number | { '1h': number };
-  snow?: number | { '1h': number };
-}
+import { FeelsLike, ForecastResponse, Temperature } from '../interfaces';
+import { Weather } from './Weather';
 
 export class Forecast {
   static IntlNumberFormatFloat = new Intl.NumberFormat('pt', {
@@ -196,22 +157,35 @@ export class Forecast {
 
   public get tempDailyFormatted():
     | {
-        max: string;
-        min: string;
-        day: string;
-        eve: string;
-        morn: string;
-        night: string;
+        avg?: string;
+        max?: string;
+        min?: string;
+        day?: string;
+        eve?: string;
+        morn?: string;
+        night?: string;
       }
     | undefined {
     return this.tempDaily
       ? {
-          max: Forecast.IntlNumberFormatFloat.format(this.tempDaily.max),
-          min: Forecast.IntlNumberFormatFloat.format(this.tempDaily.min),
-          day: Forecast.IntlNumberFormatFloat.format(this.tempDaily.day),
-          eve: Forecast.IntlNumberFormatFloat.format(this.tempDaily.eve),
-          morn: Forecast.IntlNumberFormatFloat.format(this.tempDaily.morn),
-          night: Forecast.IntlNumberFormatFloat.format(this.tempDaily.night),
+          max: !this.tempDaily.max
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.max),
+          min: !this.tempDaily.min
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.min),
+          day: !this.tempDaily.day
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.day),
+          eve: !this.tempDaily.eve
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.eve),
+          morn: !this.tempDaily.morn
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.morn),
+          night: !this.tempDaily.night
+            ? undefined
+            : Forecast.IntlNumberFormatFloat.format(this.tempDaily.night),
         }
       : undefined;
   }
