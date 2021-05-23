@@ -2,5 +2,11 @@
 import { Position } from '../interfaces';
 
 export class City {
-  constructor(public name: string, public position: Position) {}
+  constructor(
+    public id: number,
+    public countryCode: string,
+    public name: string,
+    public position: Position,
+    public timezone: number,
+  ) {}
 }
