@@ -1,12 +1,13 @@
 import { Reducer } from 'redux';
 
 import { Position } from '../../../interfaces';
+import { ActionTypes } from './types';
 
 const INITIAL_STATE = null;
 
 const position: Reducer<Position | null> = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case '@position/SET_POSITION': {
+    case ActionTypes.SET_POSITION_SUCCESS: {
       return action.payload.position;
     }
     default: {
