@@ -25,8 +25,8 @@ export interface ForecastResponse {
   moonrise?: number;
   moonset?: number;
   pop?: number;
-  rain?: number | { '1h': number };
-  snow?: number | { '1h': number };
+  rain?: number | { '1h'?: number; '3h'?: number };
+  snow?: number | { '1h'?: number; '3h'?: number };
 }
 export interface CurrentResponse {
   coord: { lon: number; lat: number };

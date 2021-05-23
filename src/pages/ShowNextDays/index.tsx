@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Forecast } from '../../models/Forecast';
+import { DailyForecast } from '../../models/DailyForecast';
 
 import { Item } from './components/Item';
 
 import { Container, List } from './styles';
 
 interface ShowNextDaysProps {
-  nextDays: Forecast[];
-  onSelect: (item: Forecast) => void;
-  selectedDay?: Forecast;
+  nextDays: DailyForecast[];
+  onSelect: (item: DailyForecast) => void;
+  selectedDay?: DailyForecast;
 }
 
 export const ShowNextDays: React.FC<ShowNextDaysProps> = ({

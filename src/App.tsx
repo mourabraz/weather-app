@@ -10,6 +10,7 @@ import { Default } from './pages/_layouts/Default';
 import { Current } from './pages/Current';
 import { ShowNextDays } from './pages/ShowNextDays';
 import { ForecastDetails } from './pages/ForecastDetails';
+import { DailyForecast } from './models/DailyForecast';
 
 const getPosition = async () => {
   return new Promise<Position>((resolve, reject) => {
@@ -31,7 +32,7 @@ export const App: React.FC = () => {
   const [position, setPosition] = useState<Position>();
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
   const [current, setCurrent] = useState<CurrentModel>();
-  const [selectedDay, setSelectedDay] = useState<Forecast>();
+  const [selectedDay, setSelectedDay] = useState<DailyForecast>();
 
   useEffect(() => {
     async function load() {

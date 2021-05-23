@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-useless-constructor */
 import { ForecastOneCallResponse } from '../interfaces';
-import { Forecast } from './Forecast';
+import { DailyForecast } from './DailyForecast';
 
 export class ForecastOneCall {
   static fromResponse({
@@ -13,8 +13,8 @@ export class ForecastOneCall {
     lon,
   }: ForecastOneCallResponse): ForecastOneCall {
     return new this(
-      Forecast.fromResponse(timezone, current),
-      daily.map(d => Forecast.fromResponse(timezone, d)),
+      DailyForecast.fromResponse(timezone, current),
+      daily.map(d => DailyForecast.fromResponse(timezone, d)),
       timezone,
       timezone_offset,
       lat,
@@ -23,8 +23,8 @@ export class ForecastOneCall {
   }
 
   constructor(
-    public current: Forecast,
-    public daily: Forecast[],
+    public current: DailyForecast,
+    public daily: DailyForecast[],
     public timezone: string,
     public timezoneOffset: number,
     public lat: number,

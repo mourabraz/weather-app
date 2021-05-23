@@ -1,13 +1,13 @@
 import React from 'react';
 import { FiNavigation } from 'react-icons/fi';
 
-import { Forecast } from '../../models/Forecast';
+import { DailyForecast } from '../../models/DailyForecast';
 
 import { Colors } from '../../styles/colors';
 import { Container, Row, Column, WindIcon } from './styles';
 
 interface ForecastDetailsProps {
-  day: Forecast;
+  day: DailyForecast;
 }
 
 export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
@@ -18,18 +18,18 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
       <Row>
         <Column>
           <p>
-            Máx: <span>{day.tempDailyFormatted?.max} ºC</span>
+            Máx: <span>{day.tempFormatted?.max} ºC</span>
           </p>
           <p>
-            Min: <span>{day.tempDailyFormatted?.min} ºC</span>
-          </p>
-
-          <p>
-            Dia <span>{day.tempDailyFormatted?.day} ºC</span>
+            Min: <span>{day.tempFormatted?.min} ºC</span>
           </p>
 
           <p>
-            Noite <span>{day.tempDailyFormatted?.eve} ºC</span>
+            Dia <span>{day.tempFormatted?.day} ºC</span>
+          </p>
+
+          <p>
+            Noite <span>{day.tempFormatted?.eve} ºC</span>
           </p>
         </Column>
         <Column>
@@ -67,7 +67,7 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
             <span>{day.windSpeedFormatted} km/h</span>
           </p>
           <p>
-            <WindIcon direction={Math.abs(day.windDeg)}>
+            <WindIcon direction={Math.abs(day.wind.deg)}>
               <FiNavigation color={Colors.textIcons} size={32} />
             </WindIcon>
           </p>

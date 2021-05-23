@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Forecast } from '../../../../models/Forecast';
+import { DailyForecast } from '../../../../models/DailyForecast';
 
 import { Container } from './styles';
 
 interface ItemProps {
-  day: Forecast;
-  onSelect: (item: Forecast) => void;
+  day: DailyForecast;
+  onSelect: (item: DailyForecast) => void;
   isSelected: boolean;
 }
 
@@ -19,13 +19,13 @@ export const Item: React.FC<ItemProps> = ({
     <Container isSelected={isSelected} onClick={() => onSelect(day)}>
       <p>{day.getFormattedDate('EEE dd')}</p>
       <p>
-        <img src={day.iconWeatherUrl} alt={day.weather[0].main} />
+        <img src={day.iconWeatherUrl} alt={day.weather.main} />
       </p>
       <p>
-        <span>{day.tempDailyFormatted?.max}º</span>
-        <span>{day.tempDailyFormatted?.min}º</span>
+        <span>{day.tempFormatted?.max}º</span>
+        <span>{day.tempFormatted?.min}º</span>
       </p>
-      <p>{day.weather[0].description}</p>
+      <p>{day.weather.description}</p>
     </Container>
   );
 };
