@@ -10,8 +10,8 @@ export const Footer: React.FC = () => {
     <Container>
       <p>mourabraz &copy; 2021</p>
       <p>
-        weather at <span>latitude {position.lat}</span>,{' '}
-        <span>longitude {position.long}</span>
+        weather at <span>latitude {position?.lat}</span>,{' '}
+        <span>longitude {position?.long}</span>
       </p>
     </Container>
   );
