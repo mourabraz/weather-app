@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { Colors } from '../../styles/colors';
 
-export const Container = styled.button`
+interface ContainerProps {
+  fillIcon: 'none' | string;
+}
+
+export const Container = styled.button<ContainerProps>`
   position: relative;
   background: transparent;
   height: 32px;
@@ -26,6 +30,10 @@ export const Container = styled.button`
     svg {
       opacity: 0.5;
     }
+  }
+
+  svg {
+    fill: ${props => props.fillIcon};
   }
 
   span {
