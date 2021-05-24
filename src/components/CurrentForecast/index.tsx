@@ -1,11 +1,8 @@
 import React from 'react';
-import { FiNavigation } from 'react-icons/fi';
 
 import { CurrentForecast as CurrentForecastModel } from '../../models/CurrentForecast';
 
-import { Colors } from '../../styles/colors';
 import { WindIcon } from '../WindIcon';
-
 import { Container, TemperatureInfo, InfoBox } from './styles';
 
 interface CurrentForecastProps {
