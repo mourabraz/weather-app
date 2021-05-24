@@ -16,16 +16,30 @@ export const Container = styled.section`
 
 export const Row = styled.div`
   display: flex;
+  justify-content: center;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    & + div {
+      padding-left: 32px;
+    }
+
+    p {
+      display: flex;
+    }
+
+    svg {
+      align-self: center;
+    }
+  }
 `;
 
 export const TemperatureInfo = styled.div`
-  display: flex;
-  flex-direction: column;
   min-width: 136px;
-  padding-right: 32px;
 
   p {
-    display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     span {
@@ -35,13 +49,9 @@ export const TemperatureInfo = styled.div`
 `;
 
 export const SunMoonInfo = styled.div`
-  display: flex;
-  flex-direction: column;
   min-width: 176px;
-  padding-right: 32px;
 
   p {
-    display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     span {
@@ -51,32 +61,20 @@ export const SunMoonInfo = styled.div`
 `;
 
 export const OtherInfo = styled.div`
-  display: flex;
-  flex-direction: column;
   min-width: 216px;
-  padding-right: 32px;
 
   p {
-    display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     span {
       margin-left: 8px;
+      display: flex;
+      align-items: center;
     }
   }
 `;
 
 export const WindInfo = styled.div`
-  display: flex;
-  flex-direction: column;
   min-width: 100px;
   align-items: center;
-
-  p {
-    display: flex;
-    flex-direction: column;
-    & + p {
-      margin-top: 16px;
-    }
-  }
 `;

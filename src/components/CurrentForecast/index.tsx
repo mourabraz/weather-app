@@ -41,7 +41,9 @@ export const CurrentForecast: React.FC<CurrentForecastProps> = ({
             <WindIcon
               direction={Math.abs(current.wind.deg)}
               size={16}
-              style={{ display: 'inline-block' }}
+              style={{
+                display: 'inline-block',
+              }}
             />
             <span>{current.windSpeedFormatted} km/h</span>
           </p>

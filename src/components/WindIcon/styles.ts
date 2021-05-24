@@ -9,7 +9,7 @@ export const Container = styled.span<WindIconProps>`
   justify-content: center;
   align-items: center;
   svg {
-    /* 180 + 45 = this is necessary to adjust FiNavigation icon to the right diretion*/
-    transform: rotate(${props => `${Math.abs(180 + 45 - props.direction)}deg`});
+    /* 180 = this is necessary to adjust WiWindDeg icon to the right diretion*/
+    transform: rotate(${props => `${Math.abs(180 - props.direction)}deg`});
   }
 `;
