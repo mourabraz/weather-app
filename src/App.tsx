@@ -58,7 +58,6 @@ export const App: React.FC = () => {
           </>
         ) : null}
       </Default>
-
       <GlobalStyle />
     </>
   );

@@ -1,4 +1,4 @@
-import { Position } from '../../../interfaces';
+import { AppError, Position } from '../../../interfaces';
 import { ActionTypes } from './types';
 
 export function getPositionRequest() {
@@ -16,7 +16,7 @@ export function getPositionSuccess(position: Position) {
   };
 }
 
-export function getPositionFailure(error: Error | string | null) {
+export function getPositionFailure(error: AppError | null) {
   return {
     type: ActionTypes.GET_POSITION_FAILURE,
     payload: {

@@ -98,3 +98,8 @@ export interface Wind {
   speed: number;
   gust?: number;
 }
+
+export interface AppError {
+  title: string;
+  messages: string[];
+}

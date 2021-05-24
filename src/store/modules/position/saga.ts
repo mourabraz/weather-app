@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { Position } from '../../../interfaces';
+import { AppError, Position } from '../../../interfaces';
 
 import { getCurrentRequest } from '../current/actions';
 import { getPositionSuccess, getPositionFailure } from './actions';
@@ -33,7 +33,15 @@ function* getPosition() {
   try {
     position = yield call(getNavigatorPosition);
   } catch (error) {
-    yield put(getPositionFailure(error));
+    const appError = {
+      title: 'Geolocation Error',
+      messages: [
+        error.message || typeof error === 'string' ? error : 'Unknow error',
+        'Using default vales for the position',
+      ],
+    };
+
+    yield put(getPositionFailure(appError));
   }
 
   yield put(getPositionSuccess(position));
