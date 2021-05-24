@@ -1,13 +1,18 @@
 import { AppError, Position } from '../../../interfaces';
-import { ActionTypes } from './types';
+import {
+  ActionTypes,
+  GetPositionFailure,
+  GetPositionRequest,
+  GetPositionSuccess,
+} from './types';
 
-export function getPositionRequest() {
+export function getPositionRequest(): GetPositionRequest {
   return {
     type: ActionTypes.GET_POSITION_REQUEST,
   };
 }
 
-export function getPositionSuccess(position: Position) {
+export function getPositionSuccess(position: Position): GetPositionSuccess {
   return {
     type: ActionTypes.GET_POSITION_SUCCESS,
     payload: {
@@ -16,7 +21,7 @@ export function getPositionSuccess(position: Position) {
   };
 }
 
-export function getPositionFailure(error: AppError | null) {
+export function getPositionFailure(error: AppError | null): GetPositionFailure {
   return {
     type: ActionTypes.GET_POSITION_FAILURE,
     payload: {

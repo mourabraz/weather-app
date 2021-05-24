@@ -1,7 +1,7 @@
 import { AppError } from '../../../interfaces';
-import { ActionTypes } from './types';
+import { ActionTypes, AddError, ClearError } from './types';
 
-export function addError(error: AppError | null) {
+export function addError(error: AppError | null): AddError {
   return {
     type: ActionTypes.ADD_ERROR,
     payload: {
@@ -10,7 +10,7 @@ export function addError(error: AppError | null) {
   };
 }
 
-export function clearError() {
+export function clearError(): ClearError {
   return {
     type: ActionTypes.CLEAR_ERROR,
   };

@@ -1,8 +1,13 @@
 import { AppError } from '../../../interfaces';
 import { ForecastCollection } from '../../../models/ForecastCollection';
-import { ActionTypes } from './types';
+import {
+  ActionTypes,
+  GetForecastCollectionFailure,
+  GetForecastCollectionRequest,
+  GetForecastCollectionSuccess,
+} from './types';
 
-export function getForecastCollectionRequest() {
+export function getForecastCollectionRequest(): GetForecastCollectionRequest {
   return {
     type: ActionTypes.GET_FORECAST_COLLECTION_REQUEST,
   };
@@ -10,7 +15,7 @@ export function getForecastCollectionRequest() {
 
 export function getForecastCollectionSuccess(
   forecastCollection: ForecastCollection,
-) {
+): GetForecastCollectionSuccess {
   return {
     type: ActionTypes.GET_FORECAST_COLLECTION_SUCCESS,
     payload: {
@@ -19,7 +24,9 @@ export function getForecastCollectionSuccess(
   };
 }
 
-export function getForecastCollectionFailure(error: AppError | null) {
+export function getForecastCollectionFailure(
+  error: AppError | null,
+): GetForecastCollectionFailure {
   return {
     type: ActionTypes.GET_FORECAST_COLLECTION_FAILURE,
     payload: {

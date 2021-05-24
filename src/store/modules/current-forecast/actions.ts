@@ -1,14 +1,21 @@
 import { AppError } from '../../../interfaces';
 import { CurrentForecast } from '../../../models/CurrentForecast';
-import { ActionTypes } from './types';
+import {
+  ActionTypes,
+  GetCurrentForecastFailure,
+  GetCurrentForecastRequest,
+  GetCurrentForecastSuccess,
+} from './types';
 
-export function getCurrentForecastRequest() {
+export function getCurrentForecastRequest(): GetCurrentForecastRequest {
   return {
     type: ActionTypes.GET_CURRENT_FORECAST_REQUEST,
   };
 }
 
-export function getCurrentForecastSuccess(current: CurrentForecast) {
+export function getCurrentForecastSuccess(
+  current: CurrentForecast,
+): GetCurrentForecastSuccess {
   return {
     type: ActionTypes.GET_CURRENT_FORECAST_SUCCESS,
     payload: {
@@ -17,7 +24,9 @@ export function getCurrentForecastSuccess(current: CurrentForecast) {
   };
 }
 
-export function getCurrentForecastFailure(error: AppError | null) {
+export function getCurrentForecastFailure(
+  error: AppError | null,
+): GetCurrentForecastFailure {
   return {
     type: ActionTypes.GET_CURRENT_FORECAST_FAILURE,
     payload: {
