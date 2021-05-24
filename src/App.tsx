@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPositionRequest } from './store/modules/position/actions';
 
 import { ForecastOneCall } from './models/ForecastOneCall';
-import { Current as CurrentModel } from './models/Current';
+import { CurrentForecast as CurrentForecastModel } from './models/CurrentForecast';
 import { Position } from './interfaces';
 
 import GlobalStyle from './styles/global';
 import { Default } from './pages/_layouts/Default';
-import { Current } from './pages/Current';
+import { CurrentForecast } from './pages/CurrentForecast';
 import { ShowNextDays } from './pages/ShowNextDays';
 import { ForecastDetails } from './pages/ForecastDetails';
 import { DailyForecast } from './models/DailyForecast';
@@ -18,8 +18,8 @@ import { State } from './store';
 export const App: React.FC = () => {
   const dispatch = useDispatch();
   const position = useSelector<State, Position>(state => state.position);
-  const current = useSelector<State, CurrentModel | null>(
-    state => state.current,
+  const current = useSelector<State, CurrentForecastModel | null>(
+    state => state.currentForecast,
   );
 
   const [forecastOneCall, setForecastOneCall] = useState<ForecastOneCall>();
@@ -46,7 +46,7 @@ export const App: React.FC = () => {
   return (
     <>
       <Default>
-        {current ? <Current current={current} /> : null}
+        {current ? <CurrentForecast current={current} /> : null}
         {forecastOneCall ? (
           <>
             <ShowNextDays

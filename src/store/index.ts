@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
 import { AppError, Position } from '../interfaces';
-import { Current } from '../models/Current';
+import { CurrentForecast } from '../models/CurrentForecast';
 
 import rootReducer from './modules/rootReducer';
 import rootSaga from './modules/rootSaga';
@@ -11,7 +11,7 @@ import rootSaga from './modules/rootSaga';
 export interface State {
   position: Position;
   error: AppError | null;
-  current: Current | null;
+  currentForecast: CurrentForecast | null;
 }
 
 const sagaMiddleware = createSagaMiddleware();

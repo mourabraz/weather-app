@@ -28,7 +28,7 @@ export interface ForecastResponse {
   rain?: number | { '1h'?: number; '3h'?: number };
   snow?: number | { '1h'?: number; '3h'?: number };
 }
-export interface CurrentResponse {
+export interface CurrentForecastResponse {
   coord: { lon: number; lat: number };
   weather: WeatherResponse[];
   base: string;

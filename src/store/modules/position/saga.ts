@@ -1,8 +1,8 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { AppError, Position } from '../../../interfaces';
+import { Position } from '../../../interfaces';
 
-import { getCurrentRequest } from '../current/actions';
+import { getCurrentForecastRequest } from '../current-forecast/actions';
 import { getPositionSuccess, getPositionFailure } from './actions';
 import { ActionTypes } from './types';
 
@@ -46,7 +46,7 @@ function* getPosition() {
 
   yield put(getPositionSuccess(position));
 
-  yield put(getCurrentRequest());
+  yield put(getCurrentForecastRequest());
 }
 
 export default all([takeLatest(ActionTypes.GET_POSITION_REQUEST, getPosition)]);

@@ -1,11 +1,16 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-useless-constructor */
-import { CurrentResponse, FeelsLike, Temperature, Wind } from '../interfaces';
+import {
+  CurrentForecastResponse,
+  FeelsLike,
+  Temperature,
+  Wind,
+} from '../interfaces';
 import { City } from './City';
 import { Forecast } from './Forecast';
 import { Weather } from './Weather';
 
-export class Current extends Forecast {
+export class CurrentForecast extends Forecast {
   public city: City;
 
   static fromResponse({
@@ -20,7 +25,7 @@ export class Current extends Forecast {
     timezone,
     id,
     name,
-  }: CurrentResponse): Current {
+  }: CurrentForecastResponse): CurrentForecast {
     const city = new City(
       id,
       sys.country,

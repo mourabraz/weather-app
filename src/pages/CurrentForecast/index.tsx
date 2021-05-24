@@ -1,17 +1,19 @@
 import React from 'react';
 import { FiNavigation } from 'react-icons/fi';
 
-import { Current as CurrentModel } from '../../models/Current';
+import { CurrentForecast as CurrentForecastModel } from '../../models/CurrentForecast';
 
 import { Colors } from '../../styles/colors';
 
 import { Container, TemperatureInfo, InfoBox, WindIcon } from './styles';
 
-interface CurrentProps {
-  current: CurrentModel;
+interface CurrentForecastProps {
+  current: CurrentForecastModel;
 }
 
-export const Current: React.FC<CurrentProps> = ({ current }) => {
+export const CurrentForecast: React.FC<CurrentForecastProps> = ({
+  current,
+}) => {
   return (
     <Container>
       <h1>
