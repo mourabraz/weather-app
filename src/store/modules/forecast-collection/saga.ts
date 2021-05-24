@@ -29,7 +29,12 @@ function* getForecastCollectionRequest() {
     const appError = {
       title: 'Request ForecasCollectiont Error',
       messages: [
-        error.message || typeof error === 'string' ? error : 'Unknow error',
+        // eslint-disable-next-line no-nested-ternary
+        error.message
+          ? error.message
+          : typeof error === 'string'
+          ? error
+          : 'Unknow error',
       ],
     };
     yield put(getForecastCollectionFailure(appError));

@@ -8,5 +8,6 @@ export class City {
     public name: string,
     public position: Position,
     public timezone: number,
+    public isFavorite = false,
   ) {}
 }

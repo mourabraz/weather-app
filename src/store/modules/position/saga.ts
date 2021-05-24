@@ -36,7 +36,12 @@ function* getPosition() {
     const appError = {
       title: 'Geolocation Error',
       messages: [
-        error.message || typeof error === 'string' ? error : 'Unknow error',
+        // eslint-disable-next-line no-nested-ternary
+        error.message
+          ? error.message
+          : typeof error === 'string'
+          ? error
+          : 'Unknow error',
         'Using default vales for the position',
       ],
     };

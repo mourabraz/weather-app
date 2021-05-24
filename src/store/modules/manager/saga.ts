@@ -10,11 +10,14 @@ import {
   toggleFavoritesFailure,
   toggleFavoritesSuccess,
   getFavoritesSuccess,
+  getFavoritesRequest,
 } from './actions';
 
 import { ActionTypes } from './types';
 
 function* refresh() {
+  yield put(getFavoritesRequest());
+
   yield put(getCurrentForecastRequest());
 
   yield put(getForecastCollectionRequest());

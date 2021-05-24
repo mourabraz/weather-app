@@ -11,7 +11,7 @@ const manager: Reducer<{ favorites: City[] }> = (
 ) => {
   switch (action.type) {
     case ActionTypes.GET_FAVORITES_SUCCESS: {
-      return action.payload.favorites;
+      return { favorites: action.payload.favorites };
     }
     case ActionTypes.TOGGLE_FAVORITES_SUCCESS: {
       if (action.payload.action === 'ADD') {
