@@ -5,9 +5,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   color: ${Colors.primaryText};
-  /* min-width: 1020px; */
   margin: 0 auto;
-  /*   overflow: hidden; */
 
   h1 {
     font-weight: normal;

@@ -2,9 +2,8 @@ import React from 'react';
 import {
   WiBarometer,
   WiHumidity,
-  WiRaindrop,
+  WiSunrise,
   WiThermometer,
-  WiTime2,
   WiUmbrella,
 } from 'react-icons/wi';
 
@@ -20,6 +19,7 @@ import {
   OtherInfo,
   WindInfo,
 } from './styles';
+import { MoonPhase } from '../MoonPhase';
 
 interface ForecastDetailsProps {
   day: DailyForecast;
@@ -45,13 +45,17 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           </p>
         </TemperatureInfo>
         <SunMoonInfo>
-          <WiTime2 color={Colors.textIcons} size={40} />
+          <WiSunrise color={Colors.textIcons} size={40} />
+
           <p>
             Nascer do Sol <span>{day.getSunriseHour()}</span>
           </p>
           <p>
             Por do Sol <span>{day.getSunsetHour()}</span>
           </p>
+
+          {day.moonPhase ? <MoonPhase phase={day.moonPhase} size={40} /> : null}
+
           <p>
             Nascer da Lua <span>{day.getMoonriseHour()}</span>
           </p>
