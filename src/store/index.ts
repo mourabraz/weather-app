@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 
 import { AppError, Position } from '../interfaces';
+import { City } from '../models/City';
 import { CurrentForecast } from '../models/CurrentForecast';
 import { ForecastCollection } from '../models/ForecastCollection';
 
@@ -14,6 +15,7 @@ export interface State {
   error: AppError | null;
   currentForecast: CurrentForecast | null;
   forecastCollection: ForecastCollection | null;
+  favorites: City[];
 }
 
 const sagaMiddleware = createSagaMiddleware();
