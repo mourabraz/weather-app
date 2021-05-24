@@ -3,12 +3,12 @@ import { City } from '../../../models/City';
 
 /* eslint-disable no-shadow */
 export enum ActionTypes {
-  REFRESH = '@manger/REFRESH',
-  ADD_FAVORITES_REQUEST = '@manger/ADD_FAVORITES_REQUEST',
-  ADD_FAVORITES_SUCCESS = '@manger/ADD_FAVORITES_SUCCESS',
-  ADD_FAVORITES_FAILURE = '@manger/ADD_FAVORITES_FAILURE',
-  GET_FAVORITES_REQUEST = '@manger/GET_FAVORITES_REQUEST',
-  GET_FAVORITES_SUCCESS = '@manger/GET_FAVORITES_SUCCESS',
+  REFRESH = '@manager/REFRESH',
+  TOGGLE_FAVORITES_REQUEST = '@manager/TOGGLE_FAVORITES_REQUEST',
+  TOGGLE_FAVORITES_SUCCESS = '@manager/TOGGLE_FAVORITES_SUCCESS',
+  TOGGLE_FAVORITES_FAILURE = '@manager/TOGGLE_FAVORITES_FAILURE',
+  GET_FAVORITES_REQUEST = '@manager/GET_FAVORITES_REQUEST',
+  GET_FAVORITES_SUCCESS = '@manager/GET_FAVORITES_SUCCESS',
 }
 
 export interface Refresh {
@@ -26,22 +26,20 @@ export interface GetFavoritesSuccess {
   };
 }
 
-export interface AddFavoritesRequest {
-  type: typeof ActionTypes.ADD_FAVORITES_REQUEST;
+export interface ToggleFavoritesRequest {
+  type: typeof ActionTypes.TOGGLE_FAVORITES_REQUEST;
+}
+
+export interface ToggleFavoritesSuccess {
+  type: typeof ActionTypes.TOGGLE_FAVORITES_SUCCESS;
   payload: {
+    action: 'ADD' | 'REMOVE';
     favorite: City;
   };
 }
 
-export interface AddFavoritesSuccess {
-  type: typeof ActionTypes.ADD_FAVORITES_SUCCESS;
-  payload: {
-    favorite: City;
-  };
-}
-
-export interface AddFavoritesFailure {
-  type: typeof ActionTypes.ADD_FAVORITES_FAILURE;
+export interface ToggleFavoritesFailure {
+  type: typeof ActionTypes.TOGGLE_FAVORITES_FAILURE;
   payload: {
     error: AppError | null;
   };

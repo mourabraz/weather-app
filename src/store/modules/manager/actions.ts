@@ -2,12 +2,12 @@ import { AppError } from '../../../interfaces';
 import { City } from '../../../models/City';
 import {
   ActionTypes,
-  AddFavoritesFailure,
-  AddFavoritesRequest,
-  AddFavoritesSuccess,
   GetFavoritesRequest,
   GetFavoritesSuccess,
   Refresh,
+  ToggleFavoritesFailure,
+  ToggleFavoritesRequest,
+  ToggleFavoritesSuccess,
 } from './types';
 
 export function refresh(): Refresh {
@@ -31,29 +31,30 @@ export function getFavoritesSuccess(favorites: City[]): GetFavoritesSuccess {
   };
 }
 
-export function addFavoritesRequest(favorite: City): AddFavoritesRequest {
+export function toggleFavoritesRequest(): ToggleFavoritesRequest {
   return {
-    type: ActionTypes.ADD_FAVORITES_REQUEST,
+    type: ActionTypes.TOGGLE_FAVORITES_REQUEST,
+  };
+}
+
+export function toggleFavoritesSuccess(
+  favorite: City,
+  action: 'ADD' | 'REMOVE',
+): ToggleFavoritesSuccess {
+  return {
+    type: ActionTypes.TOGGLE_FAVORITES_SUCCESS,
     payload: {
       favorite,
+      action,
     },
   };
 }
 
-export function addFavoritesSuccess(favorite: City): AddFavoritesSuccess {
-  return {
-    type: ActionTypes.ADD_FAVORITES_SUCCESS,
-    payload: {
-      favorite,
-    },
-  };
-}
-
-export function addFavoritesFailure(
+export function toggleFavoritesFailure(
   error: AppError | null,
-): AddFavoritesFailure {
+): ToggleFavoritesFailure {
   return {
-    type: ActionTypes.ADD_FAVORITES_FAILURE,
+    type: ActionTypes.TOGGLE_FAVORITES_FAILURE,
     payload: {
       error,
     },

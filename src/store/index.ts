@@ -15,7 +15,9 @@ export interface State {
   error: AppError | null;
   currentForecast: CurrentForecast | null;
   forecastCollection: ForecastCollection | null;
-  favorites: City[];
+  manager: {
+    favorites: City[];
+  };
 }
 
 const sagaMiddleware = createSagaMiddleware();

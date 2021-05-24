@@ -1,17 +1,18 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { all, put, takeLatest, select } from 'redux-saga/effects';
 
 import * as LocalStorage from '../../../services/localStorage';
 import { City } from '../../../models/City';
 
+import { State } from '../../index';
 import { getCurrentForecastRequest } from '../current-forecast/actions';
 import { getForecastCollectionRequest } from '../forecast-collection/actions';
 import {
-  addFavoritesFailure,
-  addFavoritesSuccess,
+  toggleFavoritesFailure,
+  toggleFavoritesSuccess,
   getFavoritesSuccess,
 } from './actions';
 
-import { ActionTypes, AddFavoritesRequest } from './types';
+import { ActionTypes } from './types';
 
 function* refresh() {
   yield put(getCurrentForecastRequest());
@@ -39,26 +40,35 @@ function* getFavorites() {
   );
 }
 
-function* addFavorites({ payload: { favorite } }: AddFavoritesRequest) {
-  const favorites: City[] = LocalStorage.getFavorites();
+function* toggleFavorites() {
+  const favorite: City = yield select(
+    (state: State) => state.currentForecast?.city,
+  );
 
-  const found = favorites.find(i => i.id === favorite.id);
+  if (favorite) {
+    const favorites: City[] = LocalStorage.getFavorites();
 
-  if (found) {
+    const found = favorites.find(i => i.id === favorite.id);
+
+    if (found) {
+      LocalStorage.setFavorites(favorites.filter(i => i.id !== favorite.id));
+      yield put(toggleFavoritesSuccess(favorite, 'REMOVE'));
+    } else {
+      LocalStorage.setFavorites([...favorites, favorite]);
+      yield put(toggleFavoritesSuccess(favorite, 'ADD'));
+    }
+  } else {
     const appError = {
-      title: 'Add favorite Error',
-      messages: ['the city is already on favorites'],
+      title: 'Add/Remove favorite Error',
+      messages: ['Without a City to add/remove'],
     };
 
-    yield put(addFavoritesFailure(appError));
-  } else {
-    LocalStorage.setFavorites([...favorites, favorite]);
-    yield put(addFavoritesSuccess(favorite));
+    yield put(toggleFavoritesFailure(appError));
   }
 }
 
 export default all([
   takeLatest(ActionTypes.REFRESH, refresh),
   takeLatest(ActionTypes.GET_FAVORITES_REQUEST, getFavorites),
-  takeLatest(ActionTypes.ADD_FAVORITES_REQUEST, addFavorites),
+  takeLatest(ActionTypes.TOGGLE_FAVORITES_REQUEST, toggleFavorites),
 ]);
