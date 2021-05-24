@@ -7,7 +7,6 @@ import { getPositionRequest } from './store/modules/position/actions';
 import { ForecastCollection } from './models/ForecastCollection';
 import { CurrentForecast as CurrentForecastModel } from './models/CurrentForecast';
 import { DailyForecast } from './models/DailyForecast';
-import { Position } from './interfaces';
 
 import GlobalStyle from './styles/global';
 import { Default } from './pages/_layouts/Default';
@@ -17,12 +16,12 @@ import { ForecastDetails } from './pages/ForecastDetails';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const position = useSelector<State, Position>(state => state.position);
-  const current = useSelector<State, CurrentForecastModel | null>(
+  const currentForecast = useSelector<State, CurrentForecastModel | null>(
     state => state.currentForecast,
   );
-
-  const [forecastOneCall, setForecastOneCall] = useState<ForecastCollection>();
+  const forecastCollection = useSelector<State, ForecastCollection | null>(
+    state => state.forecastCollection,
+  );
 
   const [selectedDay, setSelectedDay] = useState<DailyForecast>();
 
@@ -30,27 +29,14 @@ export const App: React.FC = () => {
     dispatch(getPositionRequest());
   }, [dispatch]);
 
-  useEffect(() => {
-    async function load() {
-      try {
-        /* const responseJson = await fetch(
-          `${process.env.REACT_APP_API}onecall?lat=${position?.lat}&lon=${position?.long}&exclude=alerts,hourly,minutely&units=metric&lang=pt&appid=${process.env.REACT_APP_API_KEY}`,
-        ); */
-        // await responseJson.json();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [position]);
-
   return (
     <>
       <Default>
-        {current ? <CurrentForecast current={current} /> : null}
-        {forecastOneCall ? (
+        {currentForecast ? <CurrentForecast current={currentForecast} /> : null}
+        {forecastCollection ? (
           <>
             <ShowNextDays
-              nextDays={forecastOneCall.daily}
+              nextDays={forecastCollection.daily}
               selectedDay={selectedDay}
               onSelect={setSelectedDay}
             />

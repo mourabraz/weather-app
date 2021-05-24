@@ -26,7 +26,13 @@ function* getCurrentForecastRequest() {
 
     yield put(getCurrentForecastSuccess(current));
   } catch (error) {
-    yield put(getCurrentForecastFailure(error));
+    const appError = {
+      title: 'Request Current Forecast Error',
+      messages: [
+        error.message || typeof error === 'string' ? error : 'Unknow error',
+      ],
+    };
+    yield put(getCurrentForecastFailure(appError));
   }
 }
 
