@@ -20,9 +20,12 @@ html {
 
 body {
   background: ${Colors.primary};
-  background: linear-gradient(145deg, ${Colors.primaryDark} 25%, ${Colors.primaryLight} 99%);
+  background: linear-gradient(160deg, ${Colors.primaryDark} 25%, ${Colors.primaryLight} 99%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  width: 100%;
 }
 
 body, input, button {

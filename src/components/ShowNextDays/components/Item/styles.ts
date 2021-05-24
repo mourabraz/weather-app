@@ -85,4 +85,25 @@ export const Container = styled.div<ContainerProps>`
           }
         `
       : null}
+
+  @media (max-width: 1053px) {
+    width: 100px;
+    height: 169px;
+    margin-left: -12px;
+
+    & + div {
+      margin-left: 5px;
+    }
+
+    p {
+      /* description */
+      &:nth-child(4) {
+        align-items: center;
+        text-align: center;
+        margin-top: 8px;
+        padding: 0 4px;
+        height: 50px;
+      }
+    }
+  }
 `;

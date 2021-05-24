@@ -4,8 +4,9 @@ import { FiNavigation } from 'react-icons/fi';
 import { CurrentForecast as CurrentForecastModel } from '../../models/CurrentForecast';
 
 import { Colors } from '../../styles/colors';
+import { WindIcon } from '../WindIcon';
 
-import { Container, TemperatureInfo, InfoBox, WindIcon } from './styles';
+import { Container, TemperatureInfo, InfoBox } from './styles';
 
 interface CurrentForecastProps {
   current: CurrentForecastModel;
@@ -40,9 +41,11 @@ export const CurrentForecast: React.FC<CurrentForecastProps> = ({
           </p>
           <p>
             Vento
-            <WindIcon direction={Math.abs(current.wind.deg)}>
-              <FiNavigation color={Colors.textIcons} size={16} />
-            </WindIcon>
+            <WindIcon
+              direction={Math.abs(current.wind.deg)}
+              size={16}
+              style={{ display: 'inline-block' }}
+            />
             <span>{current.windSpeedFormatted} km/h</span>
           </p>
           <p>

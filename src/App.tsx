@@ -8,11 +8,12 @@ import { ForecastCollection } from './models/ForecastCollection';
 import { CurrentForecast as CurrentForecastModel } from './models/CurrentForecast';
 import { DailyForecast } from './models/DailyForecast';
 
+import { CurrentForecast } from './components/CurrentForecast';
+import { ShowNextDays } from './components/ShowNextDays';
+import { ForecastDetails } from './components/ForecastDetails';
+
 import GlobalStyle from './styles/global';
 import { Default } from './pages/_layouts/Default';
-import { CurrentForecast } from './pages/CurrentForecast';
-import { ShowNextDays } from './pages/ShowNextDays';
-import { ForecastDetails } from './pages/ForecastDetails';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();

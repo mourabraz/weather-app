@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { Colors } from '../../styles/colors';
 
-interface WindIconProps {
-  direction: number;
-}
-
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -74,12 +70,5 @@ export const InfoBox = styled.div`
         margin-left: 8px;
       }
     }
-  }
-`;
-
-export const WindIcon = styled.span<WindIconProps>`
-  svg {
-    /* 180 + 45 = this is necessary to adjust FiNavigation icon to the right diretion*/
-    transform: rotate(${props => `${Math.abs(180 + 45 - props.direction)}deg`});
   }
 `;

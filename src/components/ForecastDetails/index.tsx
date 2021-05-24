@@ -1,10 +1,16 @@
 import React from 'react';
-import { FiNavigation } from 'react-icons/fi';
 
 import { DailyForecast } from '../../models/DailyForecast';
+import { WindIcon } from '../WindIcon';
 
-import { Colors } from '../../styles/colors';
-import { Container, Row, Column, WindIcon } from './styles';
+import {
+  Container,
+  Row,
+  TemperatureInfo,
+  SunMoonInfo,
+  OtherInfo,
+  WindInfo,
+} from './styles';
 
 interface ForecastDetailsProps {
   day: DailyForecast;
@@ -13,10 +19,8 @@ interface ForecastDetailsProps {
 export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
   return (
     <Container>
-      <h1>Detalhes do Dia</h1>
-
       <Row>
-        <Column>
+        <TemperatureInfo>
           <p>
             Máx: <span>{day.tempFormatted?.max} ºC</span>
           </p>
@@ -31,8 +35,8 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           <p>
             Noite <span>{day.tempFormatted?.eve} ºC</span>
           </p>
-        </Column>
-        <Column>
+        </TemperatureInfo>
+        <SunMoonInfo>
           <p>
             Nascer do Sol <span>{day.getSunriseHour()}</span>
           </p>
@@ -48,8 +52,8 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           <p>
             Fase lunar <span>{day.moonPhase}</span>
           </p>
-        </Column>
-        <Column>
+        </SunMoonInfo>
+        <OtherInfo>
           <p>
             Precipitação <span>{day.popFormatted} %</span>
           </p>
@@ -62,18 +66,14 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           <p>
             UV <span>{day.uvi}</span>
           </p>
-        </Column>
-        <Column>
+        </OtherInfo>
+        <WindInfo>
           <p>Vento</p>
           <p>
-            <WindIcon direction={Math.abs(day.wind.deg)}>
-              <FiNavigation color={Colors.textIcons} size={40} />
-            </WindIcon>
-          </p>
-          <p>
+            <WindIcon direction={Math.abs(day.wind.deg)} size={42} />
             <span>{day.windSpeedFormatted} km/h</span>
           </p>
-        </Column>
+        </WindInfo>
       </Row>
     </Container>
   );
