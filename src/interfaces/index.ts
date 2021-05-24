@@ -61,7 +61,7 @@ export interface CurrentForecastResponse {
   name: string;
   cod: number;
 }
-export interface ForecastOneCallResponse {
+export interface ForecastCollectionResponse {
   current: ForecastResponse;
   daily: ForecastResponse[];
   timezone: string;
