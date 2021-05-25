@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 
 import { apiGeo } from '../../services/api';
@@ -9,15 +10,16 @@ import { InputDebounced } from '../InputDebounced';
 
 import { Colors } from '../../styles/colors';
 import { Container, List, ScrollList, ListItem } from './styles';
+import { setPositionRequest } from '../../store/modules/position/actions';
 
 export const SelectCityAsync: React.FC = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
 
   const [query, setQuery] = useState<string>();
   const [locations, setLocations] = useState<Location[]>([]);
 
   useEffect(() => {
-    console.log(query);
     if (query) {
       apiGeo
         .get<LocationResponse[]>(
@@ -28,7 +30,7 @@ export const SelectCityAsync: React.FC = () => {
           setOpen(true);
         })
         .catch(error => {
-          console.error(error);
+          // console.error(error);
           setOpen(true);
         });
     } else {
@@ -37,13 +39,14 @@ export const SelectCityAsync: React.FC = () => {
     }
   }, [query]);
 
-  useEffect(() => {
-    console.log(locations);
-  }, [locations]);
-
-  const handleClickToSelect = useCallback((item: Location): void => {
-    console.log(item);
-  }, []);
+  const handleClickToSelect = useCallback(
+    (item: Location): void => {
+      dispatch(setPositionRequest(item.position));
+      setOpen(false);
+      setLocations([]);
+    },
+    [dispatch],
+  );
 
   return (
     <Container>

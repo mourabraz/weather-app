@@ -3,8 +3,12 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { Position } from '../../../interfaces';
 
 import { refresh } from '../manager/actions';
-import { getPositionSuccess, getPositionFailure } from './actions';
-import { ActionTypes } from './types';
+import {
+  getPositionSuccess,
+  getPositionFailure,
+  setPositionSuccess,
+} from './actions';
+import { ActionTypes, SetPositionRequest } from './types';
 
 const getNavigatorPosition = async () => {
   return new Promise<Position>((resolve, reject) => {
@@ -54,4 +58,13 @@ function* getPosition() {
   yield put(refresh());
 }
 
-export default all([takeLatest(ActionTypes.GET_POSITION_REQUEST, getPosition)]);
+function* setPosition({ payload: { position } }: SetPositionRequest) {
+  yield put(setPositionSuccess(position));
+
+  yield put(refresh());
+}
+
+export default all([
+  takeLatest(ActionTypes.GET_POSITION_REQUEST, getPosition),
+  takeLatest(ActionTypes.SET_POSITION_REQUEST, setPosition),
+]);
