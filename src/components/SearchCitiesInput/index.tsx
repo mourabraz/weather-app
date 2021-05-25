@@ -3,7 +3,7 @@ import { IconBaseProps } from 'react-icons';
 
 import { Container } from './styles';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface SearchCitiesInputProps extends InputHTMLAttributes<HTMLInputElement> {
   time?: number;
   title?: string;
   valueChange: (value: string) => void;
@@ -16,7 +16,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const SearchCitiesInput: React.FC<SearchCitiesInputProps> = ({
   time = 300,
   title,
   valueChange,

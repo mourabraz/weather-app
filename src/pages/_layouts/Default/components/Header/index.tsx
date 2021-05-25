@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FiRefreshCw, FiStar, FiSearch } from 'react-icons/fi';
 
 import { Button } from '../../../../../components/Button';
-import { Input } from '../../../../../components/Input';
+import { SearchCitiesInput } from '../../../../../components/SearchCitiesInput';
 import { Colors } from '../../../../../styles/colors';
 
 import { Container } from './styles';
@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
       >
         favourite
       </Button>
-      <Input
+      <SearchCitiesInput
         icon={FiSearch}
         valueChange={e => console.log(e)}
         iconColor={Colors.textIcons}
