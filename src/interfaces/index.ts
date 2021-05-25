@@ -69,6 +69,18 @@ export interface ForecastCollectionResponse {
   lat: number;
   lon: number;
 }
+export interface LocationResponse {
+  name: string;
+  local_names: {
+    ascii: string;
+    en?: string;
+    pt?: string;
+  };
+  lat: number;
+  lon: number;
+  country: string;
+  state?: string;
+}
 
 export interface Position {
   lat: number;

@@ -5,7 +5,7 @@ import { State } from '../../index';
 import { CurrentForecastResponse, Position } from '../../../interfaces';
 
 import { CurrentForecast } from '../../../models/CurrentForecast';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
 
 import {
   getCurrentForecastFailure,

@@ -10,7 +10,7 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   position: relative;
-  width: 160px;
+  width: 184px;
   height: 32px;
   border-radius: 8px;
   border: 1px solid ${props => props.borderColor};
@@ -33,9 +33,27 @@ export const Container = styled.div<ContainerProps>`
       cursor: not-allowed;
     }
   }
-  svg {
+
+  > svg {
     margin-left: 8px;
   }
+
+  button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+
+    &:disabled {
+      svg {
+        display: none;
+      }
+    }
+  }
+
   ${props =>
     props.disabled
       ? css`

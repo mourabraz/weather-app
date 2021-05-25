@@ -1,5 +1,11 @@
-import React, { InputHTMLAttributes, useRef, useState } from 'react';
+import React, {
+  InputHTMLAttributes,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import { IconBaseProps } from 'react-icons';
+import { FiX } from 'react-icons/fi';
 
 import { Container } from './styles';
 
@@ -44,6 +50,11 @@ export const InputDebounced: React.FC<InputDebouncedProps> = ({
     }, time);
   };
 
+  const handleCloseButton = useCallback(() => {
+    setInputValue('');
+    valueChange('');
+  }, [valueChange]);
+
   return (
     <Container
       placeholderPosition={placeholderPosition}
@@ -59,6 +70,9 @@ export const InputDebounced: React.FC<InputDebouncedProps> = ({
         disabled={disabled}
         {...rest}
       />
+      <button type="button" onClick={handleCloseButton} disabled={!inputValue}>
+        <FiX size={20} color={iconColor} />
+      </button>
       {Icon && <Icon size={20} color={iconColor} />}
       {title && <span>{title}</span>}
     </Container>

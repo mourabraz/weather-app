@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FiRefreshCw, FiStar, FiSearch } from 'react-icons/fi';
+import { FiRefreshCw, FiStar } from 'react-icons/fi';
 
 import { Button } from '../../../../../components/Button';
-import { InputDebounced } from '../../../../../components/InputDebounced';
+import { SelectCityAsync } from '../../../../../components/SelectCityAsync';
 import { Colors } from '../../../../../styles/colors';
 
 import { Container } from './styles';
@@ -38,14 +38,7 @@ export const Header: React.FC = () => {
       >
         favourite
       </Button>
-      <InputDebounced
-        icon={FiSearch}
-        valueChange={e => console.log(e)}
-        iconColor={Colors.textIcons}
-        borderColor={Colors.accent}
-        color={Colors.textIcons}
-        title="start typing the city name"
-      />
+      <SelectCityAsync />
     </Container>
   );
 };

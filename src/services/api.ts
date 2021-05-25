@@ -8,4 +8,12 @@ const api = axios.create({
   },
 });
 
-export default api;
+const apiGeo = axios.create({
+  baseURL: `${process.env.REACT_APP_API_GEO}`,
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+});
+
+export { api, apiGeo };

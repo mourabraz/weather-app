@@ -5,7 +5,7 @@ import { State } from '../../index';
 import { ForecastCollectionResponse, Position } from '../../../interfaces';
 
 import { ForecastCollection } from '../../../models/ForecastCollection';
-import api from '../../../services/api';
+import { api } from '../../../services/api';
 
 import {
   getForecastCollectionFailure,
