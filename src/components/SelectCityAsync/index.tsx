@@ -14,7 +14,7 @@ import { setPositionRequest } from '../../store/modules/position/actions';
 
 export const SelectCityAsync: React.FC = () => {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const [query, setQuery] = useState<string>();
   const [locations, setLocations] = useState<Location[]>([]);

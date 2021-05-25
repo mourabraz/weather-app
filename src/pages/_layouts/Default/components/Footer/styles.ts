@@ -17,4 +17,10 @@ export const Container = styled.footer`
   justify-content: space-between;
 
   font-size: 1.2rem;
+
+  p {
+    span {
+      margin-left: 8px;
+    }
+  }
 `;

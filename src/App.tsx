@@ -5,7 +5,6 @@ import { State } from './store';
 import { getPositionRequest } from './store/modules/position/actions';
 
 import { ForecastCollection } from './models/ForecastCollection';
-import { CurrentForecast as CurrentForecastModel } from './models/CurrentForecast';
 import { DailyForecast } from './models/DailyForecast';
 
 import { CurrentForecast } from './components/CurrentForecast';
@@ -17,9 +16,6 @@ import { Default } from './pages/_layouts/Default';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const currentForecast = useSelector<State, CurrentForecastModel | null>(
-    state => state.currentForecast,
-  );
   const forecastCollection = useSelector<State, ForecastCollection | null>(
     state => state.forecastCollection,
   );
@@ -33,7 +29,7 @@ export const App: React.FC = () => {
   return (
     <>
       <Default>
-        {currentForecast ? <CurrentForecast current={currentForecast} /> : null}
+        <CurrentForecast />
         {forecastCollection ? (
           <>
             <ShowNextDays

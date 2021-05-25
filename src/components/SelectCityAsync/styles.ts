@@ -18,14 +18,10 @@ export const List = styled.div`
   border: 1px solid ${Colors.accent};
   border-top: none;
   border-radius: 4px;
-
   background: ${Colors.textIcons};
   text-align: left;
   -webkit-overflow-scrolling: touch;
-
   font-size: 1.4rem;
-
-  transition: visible 2s;
 `;
 
 export const ScrollList = styled.div`
@@ -56,6 +52,7 @@ export const ListItem = styled.button`
   cursor: pointer;
   border-radius: 4px;
   color: ${Colors.accent};
+
   &:hover {
     background-color: ${Colors.accent};
     color: ${Colors.textIcons};

@@ -20,7 +20,7 @@ export class Forecast {
     public date: Date,
     public sunrise: Date,
     public sunset: Date,
-    public timeZone = 'Europe/Lisbon',
+    public timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
     public pressure?: number,
     public humidity?: number,
     public visibility?: number,
