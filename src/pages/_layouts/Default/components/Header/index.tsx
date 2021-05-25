@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiRefreshCw, FiStar } from 'react-icons/fi';
 
@@ -16,6 +16,11 @@ import { State } from '../../../../../store';
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
   const current = useSelector((state: State) => state.currentForecast);
+  const favorites = useSelector((state: State) => state.manager.favorites);
+
+  const isFavorite = useMemo(() => {
+    return current ? favorites.find(i => i.id === current.city.id) : false;
+  }, [current, favorites]);
 
   const handleRefresh = useCallback(() => {
     dispatch(refresh());
@@ -32,8 +37,8 @@ export const Header: React.FC = () => {
       </Button>
       <Button
         icon={FiStar}
-        fillIcon={current?.city.isFavorite ? Colors.textIcons : 'none'}
-        title={`${current?.city.isFavorite ? 'Remove' : 'Add'} from favourites`}
+        fillIcon={isFavorite ? Colors.textIcons : 'none'}
+        title={`${isFavorite ? 'Remove' : 'Add'} from favourites`}
         onClick={handleFavoriteToggle}
       >
         favourite
