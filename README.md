@@ -61,6 +61,14 @@ docker-compose up
 Open in your browser the follow link:
 [http://localhost:3000](http://localhost:3000)
 
+## To use the Documentation
+
+```shel
+npm run doc
+```
+
+Access [http://localhost:8080](http://localhost:8080)
+
 ## If you would like to see this app in real life, it is running in production on
 
 [https://weather.mourabraz.com](https://weather.mourabraz.com)
