@@ -13,7 +13,7 @@
 
 ## Assignment
 
-Check the assingemt [here]('./README-assignment.md')
+Check the assingemt [here]('README-assignment.md')
 
 ## Requirements
 
