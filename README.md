@@ -13,7 +13,7 @@
 
 ## Assignment
 
-Check the assingemt [here]('README-assignment.md')
+Check the assingemt [here]('./README-assignment.md')
 
 ## Requirements
 
@@ -60,3 +60,7 @@ docker-compose up
 
 Open in your browser the follow link:
 [http://localhost:3000](http://localhost:3000)
+
+## License
+
+MIT © mourabraz@hotmail.com
