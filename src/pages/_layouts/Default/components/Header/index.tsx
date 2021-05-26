@@ -2,16 +2,18 @@ import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FiRefreshCw, FiStar } from 'react-icons/fi';
 
-import { Button } from '../../../../../components/Button';
-import { SelectCityAsync } from '../../../../../components/SelectCityAsync';
-import { Colors } from '../../../../../styles/colors';
-
-import { Container } from './styles';
+import { State } from '../../../../../store';
 import {
   refresh,
   toggleFavoritesRequest,
 } from '../../../../../store/modules/manager/actions';
-import { State } from '../../../../../store';
+
+import { Button } from '../../../../../components/Button';
+import { SelectCityAsync } from '../../../../../components/SelectCityAsync';
+import { SelectFavorite } from '../../../../../components/SelectFavorite';
+import { Colors } from '../../../../../styles/colors';
+
+import { Container } from './styles';
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,6 +46,7 @@ export const Header: React.FC = () => {
         favourite
       </Button>
       <SelectCityAsync />
+      <SelectFavorite />
     </Container>
   );
 };

@@ -18,9 +18,7 @@ export const CurrentForecast: React.FC = () => {
 
   return current ? (
     <Container>
-      <h1>
-        {current.city.name} / <span>{current.city.countryCode}</span>
-      </h1>
+      <h1>{current.city.localName}</h1>
       <h3>
         {collection?.current.getFormattedDate(
           "dd 'de' MMMM 'de' yyyy 'às' HH:mm",

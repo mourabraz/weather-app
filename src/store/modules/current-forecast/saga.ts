@@ -12,14 +12,10 @@ import {
   getCurrentForecastSuccess,
 } from './actions';
 import { ActionTypes } from './types';
-import { City } from '../../../models/City';
 
 function* getCurrentForecastRequest() {
   try {
     const position: Position = yield select((state: State) => state.position);
-    const favorites: City[] = yield select(
-      (state: State) => state.manager.favorites,
-    );
 
     const { data }: AxiosResponse<CurrentForecastResponse> = yield call(
       api.get,
@@ -27,7 +23,6 @@ function* getCurrentForecastRequest() {
     );
 
     const current = CurrentForecast.fromResponse(data);
-    current.city.isFavorite = !!favorites.find(i => i.id === current.city.id);
 
     yield put(getCurrentForecastSuccess(current));
   } catch (error) {

@@ -82,6 +82,14 @@ export interface LocationResponse {
   state?: string;
 }
 
+export interface CityLocalStorage {
+  id: number;
+  countryCode: string;
+  name: string;
+  position: { lat: number; long: number };
+  timezone: number;
+}
+
 export interface Position {
   lat: number;
   long: number;
