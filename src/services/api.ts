@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_API}`,
@@ -15,5 +15,15 @@ const apiGeo = axios.create({
     Accept: 'application/json',
   },
 });
+
+/*
+ * add delay for all requests, only for development purposes
+ */
+if (process.env.NODE_ENV !== 'production') {
+  const delay = (config: AxiosRequestConfig): Promise<AxiosRequestConfig> =>
+    new Promise(resolve => setTimeout(() => resolve(config), 500));
+  api.interceptors.request.use(delay);
+  apiGeo.interceptors.request.use(delay);
+}
 
 export { api, apiGeo };
