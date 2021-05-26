@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { State } from './store';
 import { getPositionRequest } from './store/modules/position/actions';
-
-import { ForecastCollection } from './models/ForecastCollection';
-import { DailyForecast } from './models/DailyForecast';
 
 import { CurrentForecast } from './components/CurrentForecast';
 import { ShowNextDays } from './components/ShowNextDays';
@@ -16,11 +12,6 @@ import { Default } from './pages/_layouts/Default';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
-  const forecastCollection = useSelector<State, ForecastCollection | null>(
-    state => state.forecastCollection,
-  );
-
-  const [selectedDay, setSelectedDay] = useState<DailyForecast>();
 
   useEffect(() => {
     dispatch(getPositionRequest());
@@ -30,16 +21,8 @@ export const App: React.FC = () => {
     <>
       <Default>
         <CurrentForecast />
-        {forecastCollection ? (
-          <>
-            <ShowNextDays
-              nextDays={forecastCollection.daily}
-              selectedDay={selectedDay}
-              onSelect={setSelectedDay}
-            />
-            {selectedDay ? <ForecastDetails day={selectedDay} /> : null}
-          </>
-        ) : null}
+        <ShowNextDays />
+        <ForecastDetails />
       </Default>
       <GlobalStyle />
     </>

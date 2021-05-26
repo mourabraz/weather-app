@@ -13,6 +13,12 @@ const forecastCollection: Reducer<ForecastCollection | null> = (
     case ActionTypes.GET_FORECAST_COLLECTION_SUCCESS: {
       return action.payload.forecastCollection;
     }
+    case ActionTypes.SET_FORECAST_COLLECTION_SELECTED: {
+      return {
+        ...state,
+        selectedDay: action.payload.dailyForecast,
+      };
+    }
     default: {
       return state;
     }

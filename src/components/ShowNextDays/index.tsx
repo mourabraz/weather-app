@@ -1,36 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { DailyForecast } from '../../models/DailyForecast';
+import { State } from '../../store';
 
 import { Item } from './components/Item';
 
 import { Container, List } from './styles';
 
-interface ShowNextDaysProps {
-  nextDays: DailyForecast[];
-  onSelect: (item: DailyForecast) => void;
-  selectedDay?: DailyForecast;
-}
+export const ShowNextDays: React.FC = () => {
+  const daily = useSelector((state: State) => state.forecastCollection?.daily);
 
-export const ShowNextDays: React.FC<ShowNextDaysProps> = ({
-  nextDays,
-  onSelect,
-  selectedDay,
-}) => {
-  return (
+  return daily && daily.length ? (
     <Container>
       <h1>Next Days</h1>
 
       <List>
-        {nextDays.map(d => (
-          <Item
-            key={String(d.date)}
-            day={d}
-            isSelected={!!selectedDay && selectedDay.date === d.date}
-            onSelect={onSelect}
-          />
+        {daily.map(d => (
+          <Item key={String(d.date)} day={d} />
         ))}
       </List>
     </Container>
-  );
+  ) : null;
 };

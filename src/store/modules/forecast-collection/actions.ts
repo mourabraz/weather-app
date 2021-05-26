@@ -1,10 +1,12 @@
 import { AppError } from '../../../interfaces';
+import { DailyForecast } from '../../../models/DailyForecast';
 import { ForecastCollection } from '../../../models/ForecastCollection';
 import {
   ActionTypes,
   GetForecastCollectionFailure,
   GetForecastCollectionRequest,
   GetForecastCollectionSuccess,
+  SetForecastCollectionSelected,
 } from './types';
 
 export function getForecastCollectionRequest(): GetForecastCollectionRequest {
@@ -31,6 +33,17 @@ export function getForecastCollectionFailure(
     type: ActionTypes.GET_FORECAST_COLLECTION_FAILURE,
     payload: {
       error,
+    },
+  };
+}
+
+export function setForecastCollectionSelected(
+  dailyForecast: DailyForecast,
+): SetForecastCollectionSelected {
+  return {
+    type: ActionTypes.SET_FORECAST_COLLECTION_SELECTED,
+    payload: {
+      dailyForecast,
     },
   };
 }

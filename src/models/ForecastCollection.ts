@@ -4,6 +4,8 @@ import { ForecastCollectionResponse } from '../interfaces';
 import { DailyForecast } from './DailyForecast';
 
 export class ForecastCollection {
+  public selectedDay: DailyForecast | null;
+
   static fromResponse({
     current,
     daily,
@@ -29,5 +31,7 @@ export class ForecastCollection {
     public timezoneOffset: number,
     public lat: number,
     public long: number,
-  ) {}
+  ) {
+    this.selectedDay = null;
+  }
 }

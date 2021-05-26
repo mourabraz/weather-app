@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   WiBarometer,
   WiHumidity,
@@ -7,8 +8,9 @@ import {
   WiUmbrella,
 } from 'react-icons/wi';
 
-import { DailyForecast } from '../../models/DailyForecast';
+import { State } from '../../store';
 import { WindIcon } from '../WindIcon';
+import { MoonPhase } from '../MoonPhase';
 
 import { Colors } from '../../styles/colors';
 import {
@@ -19,51 +21,52 @@ import {
   OtherInfo,
   WindInfo,
 } from './styles';
-import { MoonPhase } from '../MoonPhase';
 
-interface ForecastDetailsProps {
-  day: DailyForecast;
-}
+export const ForecastDetails: React.FC = () => {
+  const selectedDay = useSelector(
+    (state: State) => state.forecastCollection?.selectedDay,
+  );
 
-export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
-  return (
+  return selectedDay ? (
     <Container>
       <Row>
         <TemperatureInfo>
           <WiThermometer color={Colors.textIcons} size={40} />
           <p>
-            Máx: <span>{day.tempFormatted?.max} ºC</span>
+            Máx: <span>{selectedDay.tempFormatted?.max} ºC</span>
           </p>
           <p>
-            Min: <span>{day.tempFormatted?.min} ºC</span>
+            Min: <span>{selectedDay.tempFormatted?.min} ºC</span>
           </p>
           <p>
-            Dia <span>{day.tempFormatted?.day} ºC</span>
+            Dia <span>{selectedDay.tempFormatted?.day} ºC</span>
           </p>
           <p>
-            Noite <span>{day.tempFormatted?.eve} ºC</span>
+            Noite <span>{selectedDay.tempFormatted?.eve} ºC</span>
           </p>
         </TemperatureInfo>
         <SunMoonInfo>
           <WiSunrise color={Colors.textIcons} size={40} />
 
           <p>
-            Nascer do Sol <span>{day.getSunriseHour()}</span>
+            Nascer do Sol <span>{selectedDay.getSunriseHour()}</span>
           </p>
           <p>
-            Por do Sol <span>{day.getSunsetHour()}</span>
+            Por do Sol <span>{selectedDay.getSunsetHour()}</span>
           </p>
 
-          {day.moonPhase ? <MoonPhase phase={day.moonPhase} size={40} /> : null}
+          {selectedDay.moonPhase ? (
+            <MoonPhase phase={selectedDay.moonPhase} size={40} />
+          ) : null}
 
           <p>
-            Nascer da Lua <span>{day.getMoonriseHour()}</span>
+            Nascer da Lua <span>{selectedDay.getMoonriseHour()}</span>
           </p>
           <p>
-            Por da Lua <span>{day.getMoonsetHour()}</span>
+            Por da Lua <span>{selectedDay.getMoonsetHour()}</span>
           </p>
           <p>
-            Fase lunar <span>{day.moonPhase}</span>
+            Fase lunar <span>{selectedDay.moonPhase}</span>
           </p>
         </SunMoonInfo>
         <OtherInfo>
@@ -74,27 +77,27 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ day }) => {
           </Row>
           <p>
             Precipitação
-            <span>{day.popFormatted} %</span>
+            <span>{selectedDay.popFormatted} %</span>
           </p>
           <p>
-            Humidade <span>{day.humidity} %</span>
+            Humidade <span>{selectedDay.humidity} %</span>
           </p>
           <p>
-            Barómetro <span>{day.pressure} mb</span>
+            Barómetro <span>{selectedDay.pressure} mb</span>
           </p>
           <p>
-            Ponto de orvalho <span>{day.dewPointFormatted} ºC</span>
+            Ponto de orvalho <span>{selectedDay.dewPointFormatted} ºC</span>
           </p>
           <p>
-            UV <span>{day.uvi}</span>
+            UV <span>{selectedDay.uvi}</span>
           </p>
         </OtherInfo>
         <WindInfo>
-          <WindIcon direction={Math.abs(day.wind.deg)} size={42} />
+          <WindIcon direction={Math.abs(selectedDay.wind.deg)} size={42} />
           <p>Vento</p>
-          <p>{day.windSpeedFormatted} km/h</p>
+          <p>{selectedDay.windSpeedFormatted} km/h</p>
         </WindInfo>
       </Row>
     </Container>
-  );
+  ) : null;
 };
