@@ -7,6 +7,7 @@ import { FeelsLike, ForecastResponse, Temperature, Wind } from '../interfaces';
 import { Forecast } from './Forecast';
 import { Weather } from './Weather';
 
+/** Represents the forecast weather */
 export class DailyForecast extends Forecast {
   public dewPoint: number;
 
@@ -24,6 +25,13 @@ export class DailyForecast extends Forecast {
 
   public snow?: number;
 
+  /**
+   * Create a new object with the data from the given API response
+   *
+   * @param {string} Timezone name for the requested location
+   * @param {ForecastResponse}
+   * @returns {DailyForecast}
+   */
   static fromResponse(
     timezone: string,
     {
@@ -117,7 +125,7 @@ export class DailyForecast extends Forecast {
     sunset: Date,
     dewPoint: number,
     uvi: number,
-    timeZone = 'Europe/Lisbon',
+    timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
     pressure?: number,
     humidity?: number,
     visibility?: number,
@@ -162,8 +170,8 @@ export class DailyForecast extends Forecast {
 
   public getMoonriseHour(_format = 'HH:mm'): string | undefined {
     return this.moonrise
-      ? format(utcToZonedTime(this.moonrise, 'Europe/Lisbon'), _format, {
-          timeZone: 'Europe/Lisbon',
+      ? format(utcToZonedTime(this.moonrise, this.timeZone), _format, {
+          timeZone: this.timeZone,
           locale: pt,
         })
       : undefined;
@@ -171,8 +179,8 @@ export class DailyForecast extends Forecast {
 
   public getMoonsetHour(_format = 'HH:mm'): string | undefined {
     return this.moonset
-      ? format(utcToZonedTime(this.moonset, 'Europe/Lisbon'), _format, {
-          timeZone: 'Europe/Lisbon',
+      ? format(utcToZonedTime(this.moonset, this.timeZone), _format, {
+          timeZone: this.timeZone,
           locale: pt,
         })
       : undefined;

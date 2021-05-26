@@ -10,9 +10,16 @@ import { City } from './City';
 import { Forecast } from './Forecast';
 import { Weather } from './Weather';
 
+/** Represents the weather for the current position from latitude/longitude or city */
 export class CurrentForecast extends Forecast {
   public city: City;
 
+  /**
+   * Create a new object with the data from the given API response
+   *
+   * @param {CurrentForecastResponse}
+   * @returns {CurrentForecast}
+   */
   static fromResponse({
     coord,
     weather,

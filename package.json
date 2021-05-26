@@ -10,7 +10,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "doc": "npx compodoc -p tsconfig.json -s -n \"Weather App documentation\""
+    "doc": "npx compodoc -p tsconfig.doc.json -s -n \"Weather App documentation\""
   },
   "eslintConfig": {
     "extends": [

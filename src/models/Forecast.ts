@@ -6,6 +6,7 @@ import pt from 'date-fns/locale/pt';
 import { FeelsLike, Temperature, Wind } from '../interfaces';
 import { Weather } from './Weather';
 
+/** Super class to Represents the forecast or the current weather */
 export class Forecast {
   static IntlNumberFormatFloat = new Intl.NumberFormat('pt', {
     maximumFractionDigits: 1,
@@ -15,14 +16,38 @@ export class Forecast {
     public weather: Weather,
     public feelsLike: FeelsLike,
     public temp: Temperature,
+    /**
+     * Cloudiness, %
+     */
     public clouds: number,
     public wind: Wind,
+    /**
+     * Current time, Unix, UTC
+     */
     public date: Date,
+    /**
+     * Sunrise time, Unix, UTC
+     */
     public sunrise: Date,
+    /**
+     * Sunset time, Unix, UTC
+     */
     public sunset: Date,
+    /**
+     * Timezone name for the requested location
+     */
     public timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
+    /**
+     * Atmospheric pressure on the sea level, hPa
+     */
     public pressure?: number,
+    /**
+     * Humidity, %
+     */
     public humidity?: number,
+    /**
+     * Average visibility, metres
+     */
     public visibility?: number,
   ) {}
 

@@ -3,9 +3,16 @@
 import { ForecastCollectionResponse } from '../interfaces';
 import { DailyForecast } from './DailyForecast';
 
+/** Represents the current weather and the forecast for the next 7 days */
 export class ForecastCollection {
   public selectedDay: DailyForecast | null;
 
+  /**
+   * Create a new object with the data from the given API response
+   *
+   * @param {ForecastCollectionResponse}
+   * @returns {ForecastCollection}
+   */
   static fromResponse({
     current,
     daily,
@@ -27,9 +34,21 @@ export class ForecastCollection {
   constructor(
     public current: DailyForecast,
     public daily: DailyForecast[],
+    /**
+     * Timezone name for the requested location
+     */
     public timezone: string,
+    /**
+     * Shift in seconds from UTC
+     */
     public timezoneOffset: number,
+    /**
+     * Geographical coordinates of the location (latitude)
+     */
     public lat: number,
+    /**
+     * Geographical coordinates of the location (longitude)
+     */
     public long: number,
   ) {
     this.selectedDay = null;

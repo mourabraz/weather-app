@@ -95,27 +95,73 @@ export interface Position {
   long: number;
 }
 
+/**
+ * Temperature. This temperature parameter accounts for the human perception
+ * of weather. Units – Celsius
+ */
 export interface FeelsLike {
   avg?: number;
+  /**
+   * Day temperature
+   */
   day?: number;
+  /**
+   * Evening temperature
+   */
   eve?: number;
+  /**
+   * Morning temperature
+   */
   morn?: number;
+  /**
+   * Night temperature
+   */
   night?: number;
 }
 
+/**
+ * Temperature. Units - Celsius
+ */
 export interface Temperature {
   avg?: number;
+  /**
+   * Day temperature
+   */
   day?: number;
+  /**
+   * Evening temperature
+   */
   eve?: number;
+  /**
+   * Max daily temperature
+   */
   max?: number;
+  /**
+   * Min daily temperature
+   */
   min?: number;
+  /**
+   * Morning temperature
+   */
   morn?: number;
+  /**
+   * Night temperature
+   */
   night?: number;
 }
 
 export interface Wind {
+  /**
+   * Wind direction, degrees (meteorological)
+   */
   deg: number;
+  /**
+   * Wind speed. Unit meter/sec
+   */
   speed: number;
+  /**
+   * Wind gust. Unit meter/sec
+   */
   gust?: number;
 }
 

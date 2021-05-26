@@ -2,6 +2,12 @@
 import { WeatherResponse } from '../interfaces';
 
 export class Weather {
+  /**
+   * Create a new object with the data from the given API response
+   *
+   * @param {WeatherResponse}
+   * @returns {Weather}
+   */
   static fromResponse({
     id,
     icon,
@@ -12,9 +18,21 @@ export class Weather {
   }
 
   constructor(
+    /**
+     * Weather condition id
+     */
     public id: number,
+    /**
+     * Weather icon id
+     */
     public icon: string,
+    /**
+     * Weather condition within the group
+     */
     public description: string,
+    /**
+     * Group of weather parameters (Rain, Snow, Extreme etc.)
+     */
     public main: string,
   ) {}
 }
