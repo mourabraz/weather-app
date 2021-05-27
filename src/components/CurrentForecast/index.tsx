@@ -4,9 +4,12 @@ import { useSelector } from 'react-redux';
 import { CurrentForecast as CurrentForecastModel } from '../../models/CurrentForecast';
 import { ForecastCollection } from '../../models/ForecastCollection';
 import { State } from '../../store';
+import { Colors } from '../../styles/colors';
+
+import Loading from '../Loading';
 
 import { WindIcon } from '../WindIcon';
-import { Container, TemperatureInfo, InfoBox } from './styles';
+import { Container, TemperatureInfo, InfoBox, LoadingBox } from './styles';
 
 export const CurrentForecast: React.FC = () => {
   const current = useSelector<State, CurrentForecastModel | null>(
@@ -62,5 +65,9 @@ export const CurrentForecast: React.FC = () => {
         </div>
       </InfoBox>
     </Container>
-  ) : null;
+  ) : (
+    <LoadingBox>
+      <Loading color={Colors.textIcons} size={40} />
+    </LoadingBox>
+  );
 };

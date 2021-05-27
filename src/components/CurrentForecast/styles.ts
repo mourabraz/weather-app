@@ -72,3 +72,11 @@ export const InfoBox = styled.div`
     }
   }
 `;
+
+export const LoadingBox = styled.aside`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 100px;
+`;
