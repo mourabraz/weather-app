@@ -59,6 +59,10 @@ export const Container = styled.div<ContainerProps>`
     }
   }
 
+  &:hover {
+    border: 2px solid ${Colors.selectedBackgroundDark};
+  }
+
   ${props =>
     props.isSelected
       ? css`
