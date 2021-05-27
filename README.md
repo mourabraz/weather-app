@@ -11,10 +11,6 @@
 
 <hr />
 
-## Assignment
-
-Check the assingemt [here](https://gitlab.com/mourabraz/fe-assignment-mourabraz/-/blob/master/README-assignment.md)
-
 ## Requirements
 
 - [git][git] v2.30 or greater
@@ -36,7 +32,7 @@ npm -v
 ## Download, install and run:
 
 ```shel
-git clone https://gitlab.com/mourabraz/fe-assignment-mourabraz.git
+git clone https://github.com/mourabraz/weather-app.git
 ```
 
 ### Rename the file `.env.local.example` to `.env.local` and update accordingly
@@ -50,7 +46,7 @@ REACT_APP_API_KEY=ff4b75ba8b9484ae3728a24c7d581d87
 > update the API KEY should be enough
 
 ```shel
-cd fe-assignment-mourabraz
+cd weather-app
 npm install
 ```
 
