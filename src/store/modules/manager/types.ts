@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { City } from '../../../models/City';
 
 /* eslint-disable no-shadow */
@@ -41,6 +41,6 @@ export interface ToggleFavoritesSuccess {
 export interface ToggleFavoritesFailure {
   type: typeof ActionTypes.TOGGLE_FAVORITES_FAILURE;
   payload: {
-    error: AppError | null;
+    alert: Alert;
   };
 }

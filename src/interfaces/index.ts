@@ -165,7 +165,8 @@ export interface Wind {
   gust?: number;
 }
 
-export interface AppError {
+export interface Alert {
+  kind: 'error' | 'warning' | 'info' | 'success';
   title: string;
   messages: string[];
 }

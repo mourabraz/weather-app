@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { DailyForecast } from '../../../models/DailyForecast';
 import { ForecastCollection } from '../../../models/ForecastCollection';
 import {
@@ -27,12 +27,12 @@ export function getForecastCollectionSuccess(
 }
 
 export function getForecastCollectionFailure(
-  error: AppError | null,
+  alert: Alert,
 ): GetForecastCollectionFailure {
   return {
     type: ActionTypes.GET_FORECAST_COLLECTION_FAILURE,
     payload: {
-      error,
+      alert,
     },
   };
 }

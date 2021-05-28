@@ -1,4 +1,4 @@
-import { AppError, Position } from '../../../interfaces';
+import { Alert, Position } from '../../../interfaces';
 
 /* eslint-disable no-shadow */
 export enum ActionTypes {
@@ -24,7 +24,7 @@ export interface GetPositionSuccess {
 export interface GetPositionFailure {
   type: typeof ActionTypes.GET_POSITION_FAILURE;
   payload: {
-    error: AppError | null;
+    alert: Alert;
   };
 }
 
@@ -45,6 +45,6 @@ export interface SetPositionSuccess {
 export interface SetPositionFailure {
   type: typeof ActionTypes.SET_POSITION_FAILURE;
   payload: {
-    error: AppError | null;
+    alert: Alert;
   };
 }

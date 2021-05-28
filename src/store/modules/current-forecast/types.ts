@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { CurrentForecast } from '../../../models/CurrentForecast';
 
 /* eslint-disable no-shadow */
@@ -22,6 +22,6 @@ export interface GetCurrentForecastSuccess {
 export interface GetCurrentForecastFailure {
   type: typeof ActionTypes.GET_CURRENT_FORECAST_FAILURE;
   payload: {
-    error: AppError | null;
+    alert: Alert;
   };
 }

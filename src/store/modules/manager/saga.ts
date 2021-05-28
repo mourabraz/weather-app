@@ -1,6 +1,7 @@
 import { all, put, takeLatest, select } from 'redux-saga/effects';
 
 import * as LocalStorage from '../../../services/localStorage';
+import { Alert } from '../../../interfaces';
 import { City } from '../../../models/City';
 
 import { State } from '../../index';
@@ -59,12 +60,13 @@ function* toggleFavorites() {
       yield put(toggleFavoritesSuccess(favorite, 'ADD'));
     }
   } else {
-    const appError = {
+    const alert: Alert = {
+      kind: 'error',
       title: 'Add/Remove favorite Error',
       messages: ['Without a City to add/remove'],
     };
 
-    yield put(toggleFavoritesFailure(appError));
+    yield put(toggleFavoritesFailure(alert));
   }
 }
 

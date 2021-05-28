@@ -1,4 +1,4 @@
-import { AppError, Position } from '../../../interfaces';
+import { Alert, Position } from '../../../interfaces';
 import {
   ActionTypes,
   GetPositionFailure,
@@ -24,11 +24,11 @@ export function getPositionSuccess(position: Position): GetPositionSuccess {
   };
 }
 
-export function getPositionFailure(error: AppError | null): GetPositionFailure {
+export function getPositionFailure(alert: Alert): GetPositionFailure {
   return {
     type: ActionTypes.GET_POSITION_FAILURE,
     payload: {
-      error,
+      alert,
     },
   };
 }
@@ -51,11 +51,11 @@ export function setPositionSuccess(position: Position): SetPositionSuccess {
   };
 }
 
-export function setPositionFailure(error: AppError | null): SetPositionFailure {
+export function setPositionFailure(alert: Alert): SetPositionFailure {
   return {
     type: ActionTypes.SET_POSITION_FAILURE,
     payload: {
-      error,
+      alert,
     },
   };
 }

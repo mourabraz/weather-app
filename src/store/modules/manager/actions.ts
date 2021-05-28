@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { City } from '../../../models/City';
 import {
   ActionTypes,
@@ -50,13 +50,11 @@ export function toggleFavoritesSuccess(
   };
 }
 
-export function toggleFavoritesFailure(
-  error: AppError | null,
-): ToggleFavoritesFailure {
+export function toggleFavoritesFailure(alert: Alert): ToggleFavoritesFailure {
   return {
     type: ActionTypes.TOGGLE_FAVORITES_FAILURE,
     payload: {
-      error,
+      alert,
     },
   };
 }

@@ -7,6 +7,11 @@ import manager from './manager/saga';
 import { getFavoritesRequest } from './manager/actions';
 
 export default function* rootSaga() {
-  yield all([position, currentForecast, forecastCollection, manager]);
-  yield put(getFavoritesRequest());
+  yield all([
+    position,
+    currentForecast,
+    forecastCollection,
+    manager,
+    put(getFavoritesRequest()),
+  ]);
 }

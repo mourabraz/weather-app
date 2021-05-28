@@ -1,11 +1,15 @@
 import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 
+import { api } from '../../../services/api';
 import { State } from '../../index';
-import { ForecastCollectionResponse, Position } from '../../../interfaces';
+import {
+  Alert,
+  ForecastCollectionResponse,
+  Position,
+} from '../../../interfaces';
 
 import { ForecastCollection } from '../../../models/ForecastCollection';
-import { api } from '../../../services/api';
 
 import {
   getForecastCollectionFailure,
@@ -26,7 +30,8 @@ function* getForecastCollectionRequest() {
 
     yield put(getForecastCollectionSuccess(forecastCollection));
   } catch (error) {
-    const appError = {
+    const alert: Alert = {
+      kind: 'error',
       title: 'Request ForecasCollectiont Error',
       messages: [
         // eslint-disable-next-line no-nested-ternary
@@ -37,7 +42,7 @@ function* getForecastCollectionRequest() {
           : 'Unknow error',
       ],
     };
-    yield put(getForecastCollectionFailure(appError));
+    yield put(getForecastCollectionFailure(alert));
   }
 }
 

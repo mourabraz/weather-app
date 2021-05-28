@@ -1,11 +1,11 @@
 import { AxiosResponse } from 'axios';
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 
+import { api } from '../../../services/api';
 import { State } from '../../index';
-import { CurrentForecastResponse, Position } from '../../../interfaces';
+import { Alert, CurrentForecastResponse, Position } from '../../../interfaces';
 
 import { CurrentForecast } from '../../../models/CurrentForecast';
-import { api } from '../../../services/api';
 
 import {
   getCurrentForecastFailure,
@@ -26,7 +26,8 @@ function* getCurrentForecastRequest() {
 
     yield put(getCurrentForecastSuccess(current));
   } catch (error) {
-    const appError = {
+    const alert: Alert = {
+      kind: 'error',
       title: 'Request Current Forecast Error',
       messages: [
         // eslint-disable-next-line no-nested-ternary
@@ -37,7 +38,7 @@ function* getCurrentForecastRequest() {
           : 'Unknow error',
       ],
     };
-    yield put(getCurrentForecastFailure(appError));
+    yield put(getCurrentForecastFailure(alert));
   }
 }
 

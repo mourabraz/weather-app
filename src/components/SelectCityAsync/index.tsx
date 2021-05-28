@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FiSearch } from 'react-icons/fi';
 
@@ -39,14 +39,10 @@ export const SelectCityAsync: React.FC = () => {
     }
   }, [query]);
 
-  const handleClickToSelect = useCallback(
-    (item: Location): void => {
-      dispatch(setPositionRequest(item.position));
-      setOpen(false);
-      setLocations([]);
-    },
-    [dispatch],
-  );
+  const handleClickToSelect = (item: Location): void => {
+    dispatch(setPositionRequest(item.position));
+    setQuery('');
+  };
 
   return (
     <Container>
@@ -57,6 +53,7 @@ export const SelectCityAsync: React.FC = () => {
         borderColor={Colors.accent}
         color={Colors.textIcons}
         title={!open ? 'start typing the city name' : ''}
+        isFocused={open}
       />
 
       {open && (

@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { DailyForecast } from '../../../models/DailyForecast';
 import { ForecastCollection } from '../../../models/ForecastCollection';
 
@@ -25,7 +25,7 @@ export interface GetForecastCollectionSuccess {
 export interface GetForecastCollectionFailure {
   type: typeof ActionTypes.GET_FORECAST_COLLECTION_FAILURE;
   payload: {
-    error: AppError | null;
+    alert: Alert;
   };
 }
 

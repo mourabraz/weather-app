@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { Position } from '../../../interfaces';
+import { Alert, Position } from '../../../interfaces';
 
 import { refresh } from '../manager/actions';
 import {
@@ -37,7 +37,8 @@ function* getPosition() {
   try {
     position = yield call(getNavigatorPosition);
   } catch (error) {
-    const appError = {
+    const alert: Alert = {
+      kind: 'error',
       title: 'Geolocation Error',
       messages: [
         // eslint-disable-next-line no-nested-ternary
@@ -50,7 +51,7 @@ function* getPosition() {
       ],
     };
 
-    yield put(getPositionFailure(appError));
+    yield put(getPositionFailure(alert));
   }
 
   yield put(getPositionSuccess(position));

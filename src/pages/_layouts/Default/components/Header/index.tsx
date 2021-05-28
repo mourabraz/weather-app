@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
       <Button
         icon={FiStar}
         fillIcon={isFavorite ? Colors.textIcons : 'none'}
-        title={`${isFavorite ? 'Remove' : 'Add'} from favourites`}
+        title={`${isFavorite ? 'Remove' : 'Add'} from favorites`}
         onClick={handleFavoriteToggle}
       >
         favourite

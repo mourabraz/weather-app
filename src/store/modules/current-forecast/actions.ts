@@ -1,4 +1,4 @@
-import { AppError } from '../../../interfaces';
+import { Alert } from '../../../interfaces';
 import { CurrentForecast } from '../../../models/CurrentForecast';
 import {
   ActionTypes,
@@ -25,12 +25,12 @@ export function getCurrentForecastSuccess(
 }
 
 export function getCurrentForecastFailure(
-  error: AppError | null,
+  alert: Alert,
 ): GetCurrentForecastFailure {
   return {
     type: ActionTypes.GET_CURRENT_FORECAST_FAILURE,
     payload: {
-      error,
+      alert,
     },
   };
 }

@@ -6,6 +6,7 @@ interface ContainerProps {
   color: string;
   borderColor: string;
   disabled: boolean;
+  isFocused: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -59,6 +60,13 @@ export const Container = styled.div<ContainerProps>`
       ? css`
           opacity: 0.5;
           cursor: not-allowed;
+        `
+      : null}
+
+  ${props =>
+    props.isFocused
+      ? css`
+          border: 2px solid ${props.borderColor};
         `
       : null}
 

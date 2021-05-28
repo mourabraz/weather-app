@@ -20,6 +20,7 @@ interface InputDebouncedProps extends InputHTMLAttributes<HTMLInputElement> {
   borderColor?: string;
   color?: string;
   disabled?: boolean;
+  isFocused?: boolean;
 }
 
 export const InputDebounced: React.FC<InputDebouncedProps> = ({
@@ -33,6 +34,7 @@ export const InputDebounced: React.FC<InputDebouncedProps> = ({
   borderColor = '#000',
   color = '#000',
   disabled = false,
+  isFocused = false,
   ...rest
 }) => {
   const timer = useRef(0);
@@ -62,6 +64,7 @@ export const InputDebounced: React.FC<InputDebouncedProps> = ({
       borderColor={borderColor}
       color={color}
       disabled={disabled}
+      isFocused={isFocused}
     >
       <input
         type="text"
