@@ -1,5 +1,5 @@
 <div align="center">
-    <img width=600 alt="Weather App" src=""/>
+    <img width=600 alt="Weather App" src="http://mourabraz.com/img/apps/weather-app-1.png"/>
 </div>
 
 <h1>Weather APP</h1>
